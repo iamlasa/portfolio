@@ -31,7 +31,7 @@ nav {
 .hero-text { max-width: 560px; }
 .hero-tag { display: inline-block; background: var(--light-accent); color: var(--accent); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.4rem 1rem; border-radius: 999px; margin-bottom: 1.5rem; }
 .hero h1 { font-family: 'Roboto', sans-serif;font-size: clamp(2.8rem, 5vw, 4.2rem); line-height: 1.1; color: var(--navy); margin-bottom: 1.5rem; }
-.hero h1 em { font-style: italic; color: var(--accent); }
+.hero h1 em { font-style: normal; color: var(--accent); }
 .hero-desc { font-size: 1.05rem; color: var(--muted); line-height: 1.75; margin-bottom: 2.5rem; max-width: 460px; }
 .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
 .btn-primary { display: inline-block; background: var(--navy); color: var(--white); padding: 0.85rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: background 0.2s, transform 0.2s; }
