@@ -10,7 +10,7 @@
   --white: #ffffff;
 }
 html { scroll-behavior: smooth; }
-body { font-family: 'DM Sans', sans-serif; background: var(--sand); color: var(--text); line-height: 1.6; }
+body { font-family: 'Roboto', sans-serif; background: var(--sand); color: var(--text); line-height: 1.6; }
 
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -19,7 +19,7 @@ nav {
   background: rgba(248,245,240,0.95); backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(0,0,0,0.06);
 }
-.nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--navy); text-decoration: none; }
+.nav-logo { font-family: 'Roboto', sans-serif;font-size: 1.4rem; color: var(--navy); text-decoration: none; }
 .nav-links { display: flex; gap: 2.5rem; list-style: none; }
 .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--muted); text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; }
 .nav-links a:hover { color: var(--navy); }
@@ -30,7 +30,7 @@ nav {
 }
 .hero-text { max-width: 560px; }
 .hero-tag { display: inline-block; background: var(--light-accent); color: var(--accent); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.4rem 1rem; border-radius: 999px; margin-bottom: 1.5rem; }
-.hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.8rem, 5vw, 4.2rem); line-height: 1.1; color: var(--navy); margin-bottom: 1.5rem; }
+.hero h1 { font-family: 'Roboto', sans-serif;font-size: clamp(2.8rem, 5vw, 4.2rem); line-height: 1.1; color: var(--navy); margin-bottom: 1.5rem; }
 .hero h1 em { font-style: italic; color: var(--accent); }
 .hero-desc { font-size: 1.05rem; color: var(--muted); line-height: 1.75; margin-bottom: 2.5rem; max-width: 460px; }
 .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
@@ -50,14 +50,14 @@ nav {
 
 section { padding: 6rem; }
 .section-tag { display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
-.section-title { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 3.5vw, 2.8rem); color: var(--navy); margin-bottom: 1.5rem; line-height: 1.2; }
+.section-title { font-family: 'Roboto', sans-serif;font-size: clamp(2rem, 3.5vw, 2.8rem); color: var(--navy); margin-bottom: 1.5rem; line-height: 1.2; }
 
 .about { background: var(--white); }
 .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; max-width: 1100px; margin: 0 auto; }
 .about-text p { color: var(--muted); font-size: 1.02rem; line-height: 1.8; margin-bottom: 1.2rem; }
 .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
 .stat-card { background: var(--sand); border-radius: 14px; padding: 1.5rem; text-align: center; }
-.stat-number { font-family: 'DM Serif Display', serif; font-size: 2.4rem; color: var(--navy); line-height: 1; margin-bottom: 0.4rem; }
+.stat-number { font-family: 'Roboto', sans-serif;font-size: 2.4rem; color: var(--navy); line-height: 1; margin-bottom: 0.4rem; }
 .stat-label { font-size: 0.82rem; color: var(--muted); font-weight: 500; }
 
 .work { background: var(--sand); }
@@ -66,7 +66,7 @@ section { padding: 6rem; }
 .work-card { background: var(--white); border-radius: 16px; padding: 2rem; border: 1px solid rgba(0,0,0,0.06); transition: transform 0.25s, box-shadow 0.25s; }
 .work-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(15,35,64,0.1); }
 .work-icon { font-size: 2.2rem; margin-bottom: 1.2rem; display: block; }
-.work-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: var(--navy); margin-bottom: 0.8rem; }
+.work-card h3 { font-family: 'Roboto', sans-serif;font-size: 1.3rem; color: var(--navy); margin-bottom: 0.8rem; }
 .work-card p { font-size: 0.92rem; color: var(--muted); line-height: 1.7; }
 .work-tag { display: inline-block; margin-top: 1rem; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; background: var(--light-accent); color: var(--accent); padding: 0.3rem 0.8rem; border-radius: 999px; }
 
