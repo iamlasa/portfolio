@@ -49,7 +49,7 @@ nav {
 .hero-photo { display: flex; justify-content: center; align-items: center; }
 .photo-wrapper { position: relative; width: 380px; height: 460px; }
 .photo-bg { position: absolute; top: 20px; left: 20px; width: 100%; height: 100%; background: var(--off-white); border-radius: 16px; border: 1px solid rgba(0,0,0,0.08); }
-.photo-wrapper img { position: relative; width: 100%; height: 100%; object-fit: cover; object-position: top center; border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,0.15); }
+.photo-wrapper img { position: relative; width: 100%; height: 100%; object-fit: cover; object-position: top center; border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,0.15); -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%); mask-image: linear-gradient(to bottom, black 55%, transparent 100%); }
 .photo-badge { position: absolute; bottom: -16px; left: -16px; background: var(--white); border-radius: 12px; padding: 1rem 1.4rem; box-shadow: 0 8px 30px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 0.8rem; z-index: 2; }
 .badge-dot { width: 10px; height: 10px; background: #22c55e; border-radius: 50%; animation: pulse 2s infinite; }
 @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.6; transform: scale(1.3); } }
