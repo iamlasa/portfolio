@@ -449,16 +449,29 @@
   }
 
   /* CASE STUDIES */
-  .case-study {
-    display: grid;
-    grid-template-columns: 1fr 1.3fr;
-    gap: 64px;
-    padding: 64px 0;
-    border-bottom: 1px solid var(--line);
-    align-items: start;
+  .case-studies-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 48px;
   }
 
-  .case-study:last-child { border-bottom: none; }
+  .case-study {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding: 40px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    position: sticky;
+    margin-bottom: 16px;
+  }
+
+  .case-study:nth-child(1) { top: 80px;  z-index: 1; }
+  .case-study:nth-child(2) { top: 160px; z-index: 2; }
+  .case-study:nth-child(3) { top: 240px; z-index: 3; }
+  .case-study:nth-child(4) { top: 320px; z-index: 4; }
 
   .case-number {
     font-family: 'Geist Mono', monospace;
@@ -478,54 +491,51 @@
 
   .case-stats {
     display: flex;
-    flex-direction: column;
-    gap: 0;
-    background: var(--bg-2);
-    border: 1px solid var(--line-2);
-    border-radius: 12px;
-    overflow: hidden;
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
   }
 
   .case-stat {
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    padding: 24px;
-    border-bottom: 1px solid var(--line-2);
+    gap: 5px;
   }
 
-  .case-stat:last-of-type { border-bottom: none; }
+  .case-stat:last-of-type { border-right: none; }
 
   .case-stat-num {
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 600;
     letter-spacing: -0.025em;
     color: var(--ink);
+    line-height: 1;
   }
 
   .case-stat-label {
-    font-size: 12px;
+    font-size: 11px;
     color: var(--muted);
     font-family: 'Geist Mono', monospace;
     letter-spacing: 0.05em;
   }
 
   .case-link {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 20px 24px;
-    background: var(--bg-3);
-    color: var(--ink);
+    gap: 6px;
+    color: var(--muted);
     text-decoration: none;
-    font-weight: 500;
-    font-size: 14px;
-    transition: background 0.2s;
-    border-top: 1px solid var(--line-2);
+    font-size: 12px;
+    font-family: 'Geist Mono', monospace;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    margin-left: auto;
   }
 
-  .case-link:hover { background: var(--bg-2); }
-  .case-link .arrow { color: var(--accent); }
+  .case-link:hover { color: var(--ink); }
+  .case-link .arrow { transition: transform 0.2s; }
+  .case-link:hover .arrow { transform: translateX(3px); }
 
   .case-block { margin-bottom: 28px; }
 
@@ -597,6 +607,305 @@
   }
 
   /* REEL */
+  .reel-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 40px;
+  }
+
+  .reel-tab {
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    padding: 14px 28px;
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--muted);
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+    letter-spacing: 0.01em;
+  }
+
+  .reel-tab:hover { color: var(--ink); }
+
+  .reel-tab.active {
+    color: var(--ink);
+    border-bottom-color: var(--ink);
+  }
+
+  .reel-panel { display: none; }
+  .reel-panel.active { display: block; }
+
+  .reel-panel-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 80px 40px;
+    border: 1px dashed var(--line);
+    border-radius: 16px;
+    color: var(--muted);
+    font-size: 14px;
+  }
+
+  .reel-panel-empty-icon { font-size: 32px; }
+
+  .reel-items { display: flex; flex-direction: column; gap: 16px; }
+
+  .reel-item {
+    padding: 32px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: border-color 0.2s;
+  }
+
+  .reel-item:hover { border-color: var(--muted); }
+
+  .reel-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .reel-item-label {
+    font-size: 11px;
+    font-family: 'Geist Mono', monospace;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .reel-item-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+
+  .reel-item-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 680px;
+  }
+
+  .reel-item-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .reel-item-tag {
+    font-size: 11px;
+    font-family: 'Geist Mono', monospace;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    background: var(--bg-3);
+    border: 1px solid var(--line);
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+
+  /* VISUAL DESIGN GRID */
+  .visual-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .visual-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: var(--bg-2);
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: pointer;
+  }
+
+  .visual-card[data-gallery] { cursor: pointer; }
+  .visual-card:hover { border-color: var(--muted); transform: translateY(-2px); }
+
+  .visual-thumb {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+  }
+
+  .visual-thumb--placeholder {
+    background: var(--bg-3);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .visual-card-body {
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .visual-card-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  /* LIGHTBOX */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+  }
+
+  .lightbox.open { display: flex; align-items: center; justify-content: center; }
+
+  .lightbox-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(6px);
+  }
+
+  .lightbox-inner {
+    position: relative;
+    z-index: 1;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    width: 90vw;
+    max-width: 1100px;
+    max-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .lightbox-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 28px;
+    border-bottom: 1px solid var(--line);
+    flex-shrink: 0;
+  }
+
+  .lightbox-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+
+  .lightbox-header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .lightbox-counter {
+    font-size: 12px;
+    font-family: 'Geist Mono', monospace;
+    color: var(--muted);
+  }
+
+  .lightbox-close {
+    background: var(--bg-3);
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    color: var(--muted);
+    font-size: 13px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .lightbox-close:hover { color: var(--ink); border-color: var(--muted); }
+
+  .lightbox-overview {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+    padding: 16px 28px;
+    border-top: 1px solid var(--line);
+    flex-shrink: 0;
+  }
+
+  .lightbox-carousel {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    padding: 0 28px 28px;
+    gap: 16px;
+  }
+
+  .lightbox-slide-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    flex: 1;
+    min-height: 0;
+  }
+
+  .lightbox-img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: contain;
+    border-radius: 10px;
+    background: var(--bg-3);
+    border: 1px solid var(--line);
+    flex-shrink: 0;
+  }
+
+  .lightbox-slide-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .lightbox-nav {
+    display: flex;
+    gap: 10px;
+  }
+
+  .lightbox-nav-btn {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    color: var(--ink);
+    font-size: 16px;
+    padding: 8px 20px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+  }
+
+  .lightbox-nav-btn:hover {
+    background: var(--bg-3);
+    border-color: var(--muted);
+  }
+
+  .lightbox-nav-btn:disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+
   .reel-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -813,7 +1122,7 @@
     .section { padding: 64px 20px; }
     .section-header { flex-direction: column; align-items: flex-start; gap: 12px; }
     .section-meta { text-align: left; }
-    .case-study { grid-template-columns: 1fr; gap: 32px; padding: 48px 0; }
+    .case-study { padding: 28px; }
     .reel-grid { grid-template-columns: 1fr; }
     .skills-grid { grid-template-columns: 1fr 1fr; }
     .about-grid { grid-template-columns: 1fr; gap: 32px; }
@@ -926,175 +1235,139 @@
     <div>
       <div class="section-eyebrow">Featured Work</div>
       <h2 class="section-title">Featured <span class="accent">case studies</span></h2>
+      <div class="section-meta" style="text-align: left; margin-top: 8px;">Four projects from my time at Glide that defined how customers learn the product.</div>
     </div>
-    <div class="section-meta">
-      Three projects from my time at Glide<br>
-      that defined how customers learn the product.
+  </div>
+
+  <div class="case-studies-list">
+
+  <div class="case-study">
+    <div class="case-number">— 01 / Documentation</div>
+
+    <div class="case-stats">
+      <div class="case-stat">
+        <div class="case-stat-num">3</div>
+        <div class="case-stat-label">Platforms migrated</div>
+      </div>
+      <div class="case-stat">
+        <div class="case-stat-num">100%</div>
+        <div class="case-stat-label">Content preserved</div>
+      </div>
+      <a href="https://www.glideapps.com/docs" target="_blank" class="case-link">
+        Visit live docs
+        <span class="arrow">→</span>
+      </a>
+    </div>
+
+    <div class="case-body">
+      <p class="case-block-text">
+        Owned two end-to-end migrations of Glide's entire docs library — GitBook to GitHub, then GitHub to Contentful — keeping all content and structure intact throughout. Also wrote new docs from scratch in my final months at Glide.
+      </p>
+      <ul class="case-list" style="margin-top: 16px;">
+        <li>Two full migrations managed end-to-end, 100% content preserved</li>
+        <li>Maintained links, structure, and stability throughout every transition</li>
+        <li>Wrote new docs: <a href="https://www.glideapps.com/docs/getting-started/agent" target="_blank">Agent</a>, <a href="https://www.glideapps.com/docs/automation/integrations/salesforce" target="_blank">Salesforce</a>, and <a href="https://www.glideapps.com/docs/automation/integrations/quickbooks" target="_blank">QuickBooks</a> integrations</li>
+      </ul>
     </div>
   </div>
 
   <div class="case-study">
-    <div>
-      <div class="case-number">— 01 / Arcades</div>
-      <h3 class="case-headline">1,000+ interactive product demos, built and maintained over two years.</h3>
-      <div class="case-stats">
-        <div class="case-stat">
-          <div class="case-stat-num">1,000+</div>
-          <div class="case-stat-label">Arcades shipped</div>
-        </div>
-        <div class="case-stat">
-          <div class="case-stat-num">~2 yrs</div>
-          <div class="case-stat-label">Continuous production</div>
-        </div>
-        <div class="case-stat">
-          <div class="case-stat-num">60+</div>
-          <div class="case-stat-label">Integrations covered</div>
-        </div>
-        <a href="https://www.glideapps.com/docs/automation/integrations/asana" target="_blank" class="case-link">
-          See a live example
-          <span class="arrow">→</span>
-        </a>
+    <div class="case-number">— 02 / Arcades</div>
+
+    <div class="case-stats">
+      <div class="case-stat">
+        <div class="case-stat-num">1,000+</div>
+        <div class="case-stat-label">Arcades shipped</div>
       </div>
+      <div class="case-stat">
+        <div class="case-stat-num">~2 yrs</div>
+        <div class="case-stat-label">Continuous production</div>
+      </div>
+      <div class="case-stat">
+        <div class="case-stat-num">60+</div>
+        <div class="case-stat-label">Integrations covered</div>
+      </div>
+      <a href="https://www.glideapps.com/docs/automation/integrations/asana" target="_blank" class="case-link">
+        See a live example
+        <span class="arrow">→</span>
+      </a>
     </div>
 
-    <div>
-      <div class="case-block">
-        <div class="case-block-label">The situation</div>
-        <p class="case-block-text">
-          Glide's documentation covered hundreds of features across 60+ integrations, dozens of components, and complex multi-step workflows. Static screenshots couldn't capture how the product actually <em>worked</em> — especially walkthroughs where users needed to follow a sequence of clicks and configurations. Users were getting stuck on docs that didn't show enough.
-        </p>
-      </div>
-
-      <div class="case-block">
-        <div class="case-block-label">What I did</div>
-        <p class="case-block-text">
-          After our team evaluated <a href="https://www.arcade.software" target="_blank">Arcade.software</a> as the interactive demo platform, I took on the production work. I went through Glide's entire existing documentation library and built Arcade demos for every feature that needed one — a few months of dedicated catch-up work, then ongoing production as new features and docs were released.
-        </p>
-        <p class="case-block-text" style="margin-top: 12px;">
-          Every Arcade is a multi-step walkthrough: I recorded the flow, edited each step, added annotations and callouts, and embedded it into the relevant docs page. I kept a consistent recording setup so all 1,000+ demos felt cohesive across the docs site. I also maintained the library long-term — updating Arcades whenever existing features changed — and trained marketing teammates so others could contribute when needed.
-        </p>
-      </div>
-
-      <div class="case-block">
-        <div class="case-block-label">Scope</div>
-        <ul class="case-list">
-          <li><strong>1,000+ Arcades</strong> shipped over ~2 years, embedded across <span class="mono">glideapps.com/docs</span></li>
-          <li>Covered everything from getting-started tutorials to API integrations, AI features, and 60+ third-party integrations</li>
-          <li>All multi-step demos — most cover complex configuration flows</li>
-          <li>Trained marketing teammates to contribute and maintain the library</li>
-        </ul>
-      </div>
+    <div class="case-body">
+      <p class="case-block-text">
+        Glide's docs relied on static screenshots that couldn't show how the product actually worked. I built and maintained a library of 1,000+ interactive Arcade demos — covering every major feature, integration, and workflow — embedded directly across <span class="mono">glideapps.com/docs</span>.
+      </p>
+      <ul class="case-list" style="margin-top: 16px;">
+        <li>1,000+ multi-step walkthroughs shipped over ~2 years</li>
+        <li>Covered getting-started flows, AI features, and 60+ third-party integrations</li>
+        <li>Maintained the full library as features evolved</li>
+        <li>Trained marketing teammates to contribute and keep it up to date</li>
+      </ul>
     </div>
   </div>
 
   <div class="case-study">
-    <div>
-      <div class="case-number">— 02 / Documentation</div>
-      <h3 class="case-headline">Migrated and managed Glide's docs across three platforms — and wrote new ones along the way.</h3>
-      <div class="case-stats">
-        <div class="case-stat">
-          <div class="case-stat-num">3</div>
-          <div class="case-stat-label">Platforms migrated</div>
-        </div>
-        <div class="case-stat">
-          <div class="case-stat-num">100%</div>
-          <div class="case-stat-label">Content preserved</div>
-        </div>
-        <a href="https://www.glideapps.com/docs" target="_blank" class="case-link">
-          Visit live docs
-          <span class="arrow">→</span>
-        </a>
+    <div class="case-number">— 03 / Glide University</div>
+
+    <div class="case-stats">
+      <div class="case-stat">
+        <div class="case-stat-num">16k+</div>
+        <div class="case-stat-label">Registered users</div>
+      </div>
+      <div class="case-stat">
+        <div class="case-stat-num">L1–L3</div>
+        <div class="case-stat-label">Certification levels</div>
+      </div>
+      <div class="case-stat">
+        <div class="case-stat-num">Solo</div>
+        <div class="case-stat-label">Owner / operator</div>
       </div>
     </div>
 
-    <div>
-      <div class="case-block">
-        <div class="case-block-label">The situation</div>
-        <p class="case-block-text">
-          Glide's documentation needed a home, but "home" kept changing. The team started on GitBook, but it wasn't built for the kind of docs CMS Glide needed. A move to GitHub solved some problems but introduced others — managing docs in raw code became too technical for non-developer contributors. Eventually, the team migrated to Contentful for a proper headless CMS workflow.
-        </p>
-      </div>
-
-      <div class="case-block">
-        <div class="case-block-label">What I did</div>
-        <p class="case-block-text">
-          <strong>Two full migrations, owned end-to-end.</strong> Our frontend engineer set up the platforms; I did the actual content migrations.
-        </p>
-        <ul class="case-list" style="margin-top: 12px;">
-          <li><strong>GitBook → GitHub:</strong> Moved the entire docs library out of GitBook into GitHub, restructuring content for a code-based workflow.</li>
-          <li><strong>GitHub → Contentful:</strong> Moved everything again into a CMS that non-developers could contribute to without touching code.</li>
-          <li><strong>Ongoing management:</strong> Maintained the docs through every platform — keeping links, structure, and content stable through transitions.</li>
-        </ul>
-      </div>
-
-      <div class="case-block">
-        <div class="case-block-label">Writing</div>
-        <p class="case-block-text">
-          In my last several months at Glide, I started writing new docs from scratch. Examples still live on the docs site:
-        </p>
-        <ul class="case-list" style="margin-top: 12px;">
-          <li><a href="https://www.glideapps.com/docs/getting-started/agent" target="_blank">Agent</a> — Glide's AI app-building assistant</li>
-          <li><a href="https://www.glideapps.com/docs/automation/integrations/salesforce" target="_blank">Salesforce integration</a></li>
-          <li><a href="https://www.glideapps.com/docs/automation/integrations/quickbooks" target="_blank">QuickBooks integration</a></li>
-        </ul>
-      </div>
-
-      <div class="case-block">
-        <div class="case-block-label">Why this matters</div>
-        <p class="case-block-text">
-          Doc migrations are usually disruptive — broken links, lost content, frustrated users. Doing it twice while keeping docs functional throughout takes careful, unglamorous operational work. Shipping new docs on top of that means I can do both sides of documentation: the <em>infrastructure</em> and the <em>writing</em>.
-        </p>
-      </div>
+    <div class="case-body">
+      <p class="case-block-text">
+        Took over Glide University after its initial build by agency V88 — a 16k+ user LMS built on Glide's own platform. Ran it solo as the full owner: content, features, troubleshooting, and user support.
+      </p>
+      <ul class="case-list" style="margin-top: 16px;">
+        <li>Managed all course and certification content across L1–L3 tracks</li>
+        <li>Built new features, including a certification expiration workflow</li>
+        <li>Resolved bugs, access issues, and content rendering problems</li>
+        <li>Handled direct user support — enrollments, account issues, certification queries</li>
+      </ul>
     </div>
   </div>
 
   <div class="case-study">
-    <div>
-      <div class="case-number">— 03 / Glide University</div>
-      <h3 class="case-headline">Managed the LMS that 15,000+ Glide users are registered on — built in Glide itself.</h3>
-      <div class="case-stats">
-        <div class="case-stat">
-          <div class="case-stat-num">15,000+</div>
-          <div class="case-stat-label">Registered users</div>
-        </div>
-        <div class="case-stat">
-          <div class="case-stat-num">L1–L3</div>
-          <div class="case-stat-label">Certification levels</div>
-        </div>
-        <div class="case-stat">
-          <div class="case-stat-num">Solo</div>
-          <div class="case-stat-label">Owner / operator</div>
-        </div>
+    <div class="case-number">— 04 / Templates</div>
+
+    <div class="case-stats">
+      <div class="case-stat">
+        <div class="case-stat-num">10+</div>
+        <div class="case-stat-label">Templates built</div>
       </div>
+      <div class="case-stat">
+        <div class="case-stat-num">3</div>
+        <div class="case-stat-label">Categories</div>
+      </div>
+      <a href="https://www.glideapps.com/templates" target="_blank" class="case-link">
+        Browse all templates
+        <span class="arrow">→</span>
+      </a>
     </div>
 
-    <div>
-      <div class="case-block">
-        <div class="case-block-label">The situation</div>
-        <p class="case-block-text">
-          Glide needed a structured learning platform for users to go beyond docs — somewhere to take courses, complete lessons, and earn certifications. An external agency, V88, built the initial LMS using Glide's own platform (a great proof point: Glide built on Glide). Once V88 handed it off, the LMS needed someone to run it day-to-day.
-        </p>
-      </div>
-
-      <div class="case-block">
-        <div class="case-block-label">What I did</div>
-        <p class="case-block-text">After V88's handoff, I took over as the operator of Glide University:</p>
-        <ul class="case-list" style="margin-top: 12px;">
-          <li><strong>Content management:</strong> Uploaded and maintained courses, lessons, and certification content as the curriculum grew and updated.</li>
-          <li><strong>Feature additions:</strong> Built new features over time — for example, a certification expiration workflow so certifications stay current as the product evolves.</li>
-          <li><strong>Troubleshooting:</strong> Investigated and resolved issues — from content rendering bugs to access problems.</li>
-          <li><strong>User support:</strong> Handled inquiries directly — updating emails, fixing account issues, answering enrollment and certification questions.</li>
-        </ul>
-      </div>
-
-      <div class="case-block">
-        <div class="case-block-label">Why this matters</div>
-        <p class="case-block-text">
-          Most customer education people <em>write content</em>. Running an LMS adds three more dimensions: <strong>technical maintenance, user support, and platform development</strong>. Doing all of it for a 15k-user platform — built on the very product I was teaching about — meant I was simultaneously a power user, an admin, and a support person.
-        </p>
-      </div>
+    <div class="case-body">
+      <p class="case-block-text">
+        Built Glide app templates for the official template marketplace — covering business operations, AI-powered tools, and field use cases. Designed to be immediately usable, well-structured, and easy to customise.
+      </p>
+      <ul class="case-list" style="margin-top: 16px;">
+        <li><a href="https://www.glideapps.com/templates/customer-portal-template-yj" target="_blank">Customer Portal</a> — client-facing portal for managing accounts and requests</li>
+        <li><a href="https://www.glideapps.com/templates/project-management-0b" target="_blank">Project Management</a> — task and project tracking for teams</li>
+        <li><a href="https://www.glideapps.com/templates/inventory-manager-template-02" target="_blank">Inventory Manager</a> — stock tracking and inventory operations</li>
+      </ul>
     </div>
   </div>
+
+  </div><!-- /.case-studies-list -->
 </section>
 
 <!-- REEL -->
@@ -1110,18 +1383,171 @@
     </div>
   </div>
 
-  <div class="reel-grid">
-    <div class="reel-card"><div class="reel-card-tag">Motion Graphics</div><div class="reel-card-title">Glide vs Retool comparison</div></div>
-    <div class="reel-card"><div class="reel-card-tag">Motion Graphics</div><div class="reel-card-title">Glide vs AppSheet comparison</div></div>
-    <div class="reel-card"><div class="reel-card-tag">Motion Graphics</div><div class="reel-card-title">Power Apps alternatives</div></div>
-    <div class="reel-card"><div class="reel-card-tag">Motion Graphics</div><div class="reel-card-title">Row Owners — security feature</div></div>
-    <div class="reel-card"><div class="reel-card-tag">Blog Assets</div><div class="reel-card-title">Intro to API — visual assets</div></div>
-    <div class="reel-card"><div class="reel-card-tag">Screencast</div><div class="reel-card-title">Custom Domain walkthrough</div></div>
-    <div class="reel-card"><div class="reel-card-tag">Visuals</div><div class="reel-card-title">Customer story hero images</div></div>
-    <div class="reel-card"><div class="reel-card-tag">AI Imagery</div><div class="reel-card-title">Sample images with MidJourney</div></div>
-    <div class="reel-card"><div class="reel-card-tag">UI Templates</div><div class="reel-card-title">Glide Landing page templates</div></div>
+  <div class="reel-tabs">
+    <button class="reel-tab active" data-tab="video">Video</button>
+    <button class="reel-tab" data-tab="visual">Visual Design</button>
+    <button class="reel-tab" data-tab="automation">AI & Automation</button>
   </div>
-  <p class="reel-placeholder-note">// Replace with real screenshots / video thumbnails when ready</p>
+
+  <div class="reel-panel active" data-panel="video">
+    <div class="reel-items">
+
+      <div class="reel-item">
+        <div class="reel-item-header">
+          <div>
+            <div class="reel-item-label">Podcast Editing</div>
+            <div class="reel-item-title">Jack Vaughan Podcast</div>
+          </div>
+          <a href="https://www.youtube.com/@JackVaughan" target="_blank" class="case-link">Watch on YouTube <span class="arrow">→</span></a>
+        </div>
+        <p class="reel-item-desc">Edited podcast interviews recorded via Riverside — handling cuts, audio cleanup, pacing, and formatting for multi-platform distribution. Managed full upload and publishing workflow across all channels.</p>
+        <div class="reel-item-tags">
+          <span class="reel-item-tag">YouTube</span>
+          <span class="reel-item-tag">Spotify</span>
+          <span class="reel-item-tag">LinkedIn</span>
+          <span class="reel-item-tag">X</span>
+          <span class="reel-item-tag">Instagram</span>
+        </div>
+      </div>
+
+      <div class="reel-item">
+        <div class="reel-item-header">
+          <div>
+            <div class="reel-item-label">Screencast</div>
+            <div class="reel-item-title">Glide Product Walkthroughs</div>
+          </div>
+          <a href="https://www.glideapps.com/data-sources" target="_blank" class="case-link">View on site <span class="arrow">→</span></a>
+        </div>
+        <p class="reel-item-desc">Recorded and produced screencast videos embedded directly on Glide's marketing pages — demonstrating product features and data sources to prospective users.</p>
+        <div class="reel-item-tags">
+          <span class="reel-item-tag">Screencast</span>
+          <span class="reel-item-tag">glideapps.com</span>
+        </div>
+      </div>
+
+      <div class="reel-item">
+        <div class="reel-item-header">
+          <div>
+            <div class="reel-item-label">YouTube — Glide</div>
+            <div class="reel-item-title">Customer Stories & Education Videos</div>
+          </div>
+          <a href="https://www.youtube.com/@glideapps" target="_blank" class="case-link">View channel <span class="arrow">→</span></a>
+        </div>
+        <p class="reel-item-desc">Edited customer story videos and educational screencast content for Glide's official YouTube channel — covering product tutorials, feature highlights, and real customer use cases.</p>
+        <div class="reel-item-tags">
+          <span class="reel-item-tag">Video Editing</span>
+          <span class="reel-item-tag">Customer Stories</span>
+          <span class="reel-item-tag">Education</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="reel-panel" data-panel="visual">
+    <div class="visual-grid">
+
+      <div class="visual-card" data-gallery="retool">
+        <img class="visual-thumb" src="assets/images/Glide vs Retool video motion graphics/XR9A0VfgNchAGWPmRsQD.png" alt="Glide Vs Retool motion graphics" />
+        <div class="visual-card-body">
+          <div class="reel-item-label">Motion Graphics</div>
+          <div class="visual-card-title">Glide Vs Retool</div>
+        </div>
+      </div>
+
+      <!-- Lightbox -->
+      <div class="lightbox" id="lightbox">
+        <div class="lightbox-overlay"></div>
+        <div class="lightbox-inner">
+          <div class="lightbox-header">
+            <div>
+              <div class="reel-item-label" id="lightbox-label"></div>
+              <div class="lightbox-title" id="lightbox-title"></div>
+            </div>
+            <div class="lightbox-header-right">
+              <span class="lightbox-counter" id="lightboxCounter"></span>
+              <button class="lightbox-close" id="lightboxClose">✕</button>
+            </div>
+          </div>
+          <p class="lightbox-overview" id="lightboxOverview"></p>
+          <div class="lightbox-carousel">
+            <div class="lightbox-slide-wrap">
+              <img class="lightbox-img" id="lightboxImg" src="" alt="" />
+              <p class="lightbox-slide-desc" id="lightboxDesc"></p>
+            </div>
+            <div class="lightbox-nav">
+              <button class="lightbox-nav-btn" id="lightboxPrev">&#8592;</button>
+              <button class="lightbox-nav-btn" id="lightboxNext">&#8594;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="visual-card">
+        <div class="visual-thumb visual-thumb--placeholder"></div>
+        <div class="visual-card-body">
+          <div class="reel-item-label">Motion Graphics</div>
+          <div class="visual-card-title">Row Owners</div>
+        </div>
+      </div>
+
+      <div class="visual-card">
+        <div class="visual-thumb visual-thumb--placeholder"></div>
+        <div class="visual-card-body">
+          <div class="reel-item-label">Motion Graphics</div>
+          <div class="visual-card-title">Power Apps Alternatives</div>
+        </div>
+      </div>
+
+      <div class="visual-card">
+        <div class="visual-thumb visual-thumb--placeholder"></div>
+        <div class="visual-card-body">
+          <div class="reel-item-label">Motion Graphics</div>
+          <div class="visual-card-title">Glide Vs AppSheet</div>
+        </div>
+      </div>
+
+      <div class="visual-card">
+        <div class="visual-thumb visual-thumb--placeholder"></div>
+        <div class="visual-card-body">
+          <div class="reel-item-label">Motion Graphics</div>
+          <div class="visual-card-title">Intro to Actions</div>
+        </div>
+      </div>
+
+      <div class="visual-card">
+        <div class="visual-thumb visual-thumb--placeholder"></div>
+        <div class="visual-card-body">
+          <div class="reel-item-label">Blog Assets</div>
+          <div class="visual-card-title">Intro to API</div>
+        </div>
+      </div>
+
+      <div class="visual-card">
+        <div class="visual-thumb visual-thumb--placeholder"></div>
+        <div class="visual-card-body">
+          <div class="reel-item-label">AI Imagery</div>
+          <div class="visual-card-title">Mid Journey Samples</div>
+        </div>
+      </div>
+
+      <div class="visual-card">
+        <div class="visual-thumb visual-thumb--placeholder"></div>
+        <div class="visual-card-body">
+          <div class="reel-item-label">Visual Assets</div>
+          <div class="visual-card-title">Customer Stories</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="reel-panel" data-panel="automation">
+    <div class="reel-panel-empty">
+      <div class="reel-panel-empty-icon">🤖</div>
+      <p>AI & automation examples coming soon.</p>
+    </div>
+  </div>
 </section>
 
 <!-- FOOTER -->
@@ -1153,5 +1579,97 @@
   </div>
 </footer>
 
+<script>
+  const galleries = {
+    retool: {
+      label: 'Motion Graphics',
+      title: 'Glide Vs Retool',
+      overview: 'The images in this series are presented in sequence, each providing a unique context corresponding to different stages of the Glide Vs. Retool video, for which I designed motion graphics. Below, you will find a brief description of the context for each image, organized according to their order in the carousel.',
+      slides: [
+        { img: 'assets/images/Glide vs Retool video motion graphics/fqQ8zaMvU5VzQZ7ljMnB.png', desc: 'With Retool, you pay a fixed price per user — $50 per standard user and $15 per end user on an annual business plan.' },
+        { img: 'assets/images/Glide vs Retool video motion graphics/yvJ8LWu5rlwZJV0aUnuH.png', desc: 'With Glide, you get 20 active users per month included with an annual business plan at $249/month. Any additional users cost just $8.' },
+        { img: 'assets/images/Glide vs Retool video motion graphics/XR9A0VfgNchAGWPmRsQD.png', desc: 'With just 10 standard users, Retool is twice as expensive as Glide at $500.' },
+        { img: 'assets/images/Glide vs Retool video motion graphics/nzs30Ei1RFdMbOyvFNsf.png', desc: "Retool's pricing involves standard users, end users, and external users — each billed separately." },
+        { img: 'assets/images/Glide vs Retool video motion graphics/teqpl0air313gTTvBHGc.png', desc: "Glide's plans are straightforward with no hidden costs — a bundle of users included, with a low per-user cost that isn't categorised by activity or type." },
+        { img: 'assets/images/Glide vs Retool video motion graphics/ntD3ia4m3s6JX2yWQvGr.png', desc: "At 20 standard users, you're spending $1,000 on Retool — while on Glide you haven't even exceeded your included users yet." },
+        { img: 'assets/images/Glide vs Retool video motion graphics/zojmj8whBbLxoyRJcMWh.png', desc: 'While the initial sticker price of a Retool app appears smaller, costs balloon quickly as your team grows.' },
+        { img: 'assets/images/Glide vs Retool video motion graphics/W7G1Oy65kXQh4kHx5ril.png', desc: "Glide's pricing is significantly more competitive at scale." },
+        { img: 'assets/images/Glide vs Retool video motion graphics/DQujIAWQqSJsPy5897dz.png', desc: 'When you build software with Glide, you empower more of your team to create the tools they need — and eliminate engineering bottlenecks.' },
+      ]
+    }
+  };
+
+  const lightbox         = document.getElementById('lightbox');
+  const lightboxOverview = document.getElementById('lightboxOverview');
+  const lightboxLabel    = document.getElementById('lightbox-label');
+  const lightboxTitle    = document.getElementById('lightbox-title');
+  const lightboxCounter  = document.getElementById('lightboxCounter');
+  const lightboxImg      = document.getElementById('lightboxImg');
+  const lightboxDesc     = document.getElementById('lightboxDesc');
+  const lightboxPrev     = document.getElementById('lightboxPrev');
+  const lightboxNext     = document.getElementById('lightboxNext');
+
+  let currentGallery = null;
+  let currentIndex   = 0;
+
+  function renderSlide() {
+    const slide = currentGallery.slides[currentIndex];
+    lightboxImg.src = slide.img;
+    lightboxImg.alt = currentGallery.title;
+    lightboxDesc.textContent = slide.desc;
+    lightboxCounter.textContent = `${currentIndex + 1} / ${currentGallery.slides.length}`;
+    lightboxPrev.disabled = currentIndex === 0;
+    lightboxNext.disabled = currentIndex === currentGallery.slides.length - 1;
+  }
+
+  document.querySelectorAll('.visual-card[data-gallery]').forEach(card => {
+    card.addEventListener('click', () => {
+      const key = card.dataset.gallery;
+      const gallery = galleries[key];
+      if (!gallery) return;
+      currentGallery = gallery;
+      currentIndex   = 0;
+      lightboxLabel.textContent = gallery.label;
+      lightboxTitle.textContent = gallery.title;
+      lightboxOverview.textContent = gallery.overview || '';
+      lightboxOverview.style.display = gallery.overview ? 'block' : 'none';
+      renderSlide();
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  lightboxPrev.addEventListener('click', () => {
+    if (currentIndex > 0) { currentIndex--; renderSlide(); }
+  });
+
+  lightboxNext.addEventListener('click', () => {
+    if (currentIndex < currentGallery.slides.length - 1) { currentIndex++; renderSlide(); }
+  });
+
+  document.addEventListener('keydown', e => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'ArrowLeft')  { if (currentIndex > 0) { currentIndex--; renderSlide(); } }
+    if (e.key === 'ArrowRight') { if (currentIndex < currentGallery.slides.length - 1) { currentIndex++; renderSlide(); } }
+    if (e.key === 'Escape') closeLightbox();
+  });
+
+  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+  document.querySelector('.lightbox-overlay').addEventListener('click', closeLightbox);
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.reel-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.reel-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.reel-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelector(`.reel-panel[data-panel="${tab.dataset.tab}"]`).classList.add('active');
+    });
+  });
+</script>
 </body>
 </html>
