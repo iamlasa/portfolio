@@ -872,10 +872,20 @@
     border: 1px solid var(--line);
   }
 
+  /* 36px btn + 14px gap = 50px — aligns text with image edges */
+  .lightbox-below {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 0 50px;
+  }
+
   .lightbox-slide-desc {
     font-size: 14px;
     color: var(--muted);
     line-height: 1.7;
+    width: 100%;
   }
 
   .lightbox-nav-btn {
@@ -912,10 +922,10 @@
     color: var(--muted);
     text-decoration: none;
     transition: color 0.15s;
+    align-self: center;
   }
 
   .lightbox-video-link:hover { color: var(--ink); }
-  .lightbox-video-link[style*="none"] { display: none; }
 
   .reel-grid {
     display: grid;
@@ -1487,11 +1497,13 @@
               <img class="lightbox-img" id="lightboxImg" src="" alt="" />
               <button class="lightbox-nav-btn" id="lightboxNext">&#8594;</button>
             </div>
-            <p class="lightbox-slide-desc" id="lightboxDesc"></p>
-            <a class="lightbox-video-link" id="lightboxVideoLink" href="#" target="_blank" rel="noopener noreferrer">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6.5" stroke="currentColor"/><path d="M5.5 4.5l4 2.5-4 2.5V4.5z" fill="currentColor"/></svg>
-              Watch video
-            </a>
+            <div class="lightbox-below">
+              <p class="lightbox-slide-desc" id="lightboxDesc"></p>
+              <a class="lightbox-video-link" id="lightboxVideoLink" href="#" target="_blank" rel="noopener noreferrer">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6.5" stroke="currentColor"/><path d="M5.5 4.5l4 2.5-4 2.5V4.5z" fill="currentColor"/></svg>
+                Watch video
+              </a>
+            </div>
           </div>
         </div>
       </div>
