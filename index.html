@@ -853,25 +853,23 @@
     flex: 1;
     min-height: 0;
     padding: 0 28px 28px;
-    gap: 16px;
+    gap: 14px;
   }
 
-  .lightbox-slide-wrap {
+  .lightbox-img-row {
     display: flex;
-    flex-direction: column;
+    align-items: center;
     gap: 14px;
-    flex: 1;
-    min-height: 0;
   }
 
   .lightbox-img {
-    width: 100%;
+    flex: 1;
+    min-width: 0;
     aspect-ratio: 16/9;
     object-fit: contain;
     border-radius: 10px;
     background: var(--bg-3);
     border: 1px solid var(--line);
-    flex-shrink: 0;
   }
 
   .lightbox-slide-desc {
@@ -880,19 +878,19 @@
     line-height: 1.7;
   }
 
-  .lightbox-nav {
-    display: flex;
-    gap: 10px;
-  }
-
   .lightbox-nav-btn {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
     background: var(--bg-2);
     border: 1px solid var(--line);
-    border-radius: 8px;
+    border-radius: 50%;
     color: var(--ink);
     font-size: 16px;
-    padding: 8px 20px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: background 0.15s, border-color 0.15s;
   }
 
@@ -905,6 +903,19 @@
     opacity: 0.3;
     cursor: default;
   }
+
+  .lightbox-video-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .lightbox-video-link:hover { color: var(--ink); }
+  .lightbox-video-link[style*="none"] { display: none; }
 
   .reel-grid {
     display: grid;
@@ -1471,14 +1482,16 @@
           </div>
           <p class="lightbox-overview" id="lightboxOverview"></p>
           <div class="lightbox-carousel">
-            <div class="lightbox-slide-wrap">
-              <img class="lightbox-img" id="lightboxImg" src="" alt="" />
-              <p class="lightbox-slide-desc" id="lightboxDesc"></p>
-            </div>
-            <div class="lightbox-nav">
+            <div class="lightbox-img-row">
               <button class="lightbox-nav-btn" id="lightboxPrev">&#8592;</button>
+              <img class="lightbox-img" id="lightboxImg" src="" alt="" />
               <button class="lightbox-nav-btn" id="lightboxNext">&#8594;</button>
             </div>
+            <p class="lightbox-slide-desc" id="lightboxDesc"></p>
+            <a class="lightbox-video-link" id="lightboxVideoLink" href="#" target="_blank" rel="noopener noreferrer">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6.5" stroke="currentColor"/><path d="M5.5 4.5l4 2.5-4 2.5V4.5z" fill="currentColor"/></svg>
+              Watch video
+            </a>
           </div>
         </div>
       </div>
@@ -1584,6 +1597,7 @@
     retool: {
       label: 'Motion Graphics',
       title: 'Glide Vs Retool',
+      video: 'https://www.youtube.com/watch?v=cMhjFlLiKuM',
       overview: 'The images in this series are presented in sequence, each providing a unique context corresponding to different stages of the Glide Vs. Retool video, for which I designed motion graphics. Below, you will find a brief description of the context for each image, organized according to their order in the carousel.',
       slides: [
         { img: 'assets/images/Glide vs Retool video motion graphics/fqQ8zaMvU5VzQZ7ljMnB.png', desc: 'With Retool, you pay a fixed price per user — $50 per standard user and $15 per end user on an annual business plan.' },
@@ -1599,15 +1613,16 @@
     }
   };
 
-  const lightbox         = document.getElementById('lightbox');
-  const lightboxOverview = document.getElementById('lightboxOverview');
-  const lightboxLabel    = document.getElementById('lightbox-label');
-  const lightboxTitle    = document.getElementById('lightbox-title');
-  const lightboxCounter  = document.getElementById('lightboxCounter');
-  const lightboxImg      = document.getElementById('lightboxImg');
-  const lightboxDesc     = document.getElementById('lightboxDesc');
-  const lightboxPrev     = document.getElementById('lightboxPrev');
-  const lightboxNext     = document.getElementById('lightboxNext');
+  const lightbox          = document.getElementById('lightbox');
+  const lightboxOverview  = document.getElementById('lightboxOverview');
+  const lightboxLabel     = document.getElementById('lightbox-label');
+  const lightboxTitle     = document.getElementById('lightbox-title');
+  const lightboxCounter   = document.getElementById('lightboxCounter');
+  const lightboxImg       = document.getElementById('lightboxImg');
+  const lightboxDesc      = document.getElementById('lightboxDesc');
+  const lightboxPrev      = document.getElementById('lightboxPrev');
+  const lightboxNext      = document.getElementById('lightboxNext');
+  const lightboxVideoLink = document.getElementById('lightboxVideoLink');
 
   let currentGallery = null;
   let currentIndex   = 0;
@@ -1633,6 +1648,12 @@
       lightboxTitle.textContent = gallery.title;
       lightboxOverview.textContent = gallery.overview || '';
       lightboxOverview.style.display = gallery.overview ? 'block' : 'none';
+      if (gallery.video) {
+        lightboxVideoLink.href = gallery.video;
+        lightboxVideoLink.style.display = 'inline-flex';
+      } else {
+        lightboxVideoLink.style.display = 'none';
+      }
       renderSlide();
       lightbox.classList.add('open');
       document.body.style.overflow = 'hidden';
