@@ -735,12 +735,13 @@
   }
 
   .visual-card[data-gallery] { cursor: pointer; }
-  .visual-card:hover { border-color: var(--muted); transform: translateY(-2px); }
+  .visual-card:hover { transform: translateY(-2px); }
 
   .visual-thumb {
     width: 100%;
-    aspect-ratio: 16 / 10;
-    object-fit: cover;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    background: var(--bg-3);
   }
 
   .visual-thumb--placeholder {
@@ -845,6 +846,7 @@
     padding: 16px 28px;
     border-top: 1px solid var(--line);
     flex-shrink: 0;
+    white-space: pre-line;
   }
 
   .lightbox-carousel {
@@ -1157,7 +1159,7 @@
 
 <!-- TOP BAR -->
 <div class="top-bar">
-  <div class="name-mark">Lasantha Pushpakumara</div>
+  <div class="name-mark">Lasa</div>
   <div class="nav-links">
     <a href="#work">Work</a>
     <a href="#reel">Reel</a>
@@ -1499,9 +1501,9 @@
             </div>
             <div class="lightbox-below">
               <p class="lightbox-slide-desc" id="lightboxDesc"></p>
-              <a class="lightbox-video-link" id="lightboxVideoLink" href="#" target="_blank" rel="noopener noreferrer">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6.5" stroke="currentColor"/><path d="M5.5 4.5l4 2.5-4 2.5V4.5z" fill="currentColor"/></svg>
-                Watch video
+              <a class="lightbox-video-link" id="lightboxCta" href="#" target="_blank" rel="noopener noreferrer">
+                <span id="lightboxCtaIcon"></span>
+                <span id="lightboxCtaLabel"></span>
               </a>
             </div>
           </div>
@@ -1516,48 +1518,48 @@
         </div>
       </div>
 
-      <div class="visual-card">
-        <div class="visual-thumb visual-thumb--placeholder"></div>
+      <div class="visual-card" data-gallery="powerapps">
+        <img class="visual-thumb" src="assets/images/Power Apps Alternatives/C5ALy9NcX3kOBkgdUC4u.png" alt="Power Apps Alternatives motion graphics" />
         <div class="visual-card-body">
           <div class="reel-item-label">Motion Graphics</div>
           <div class="visual-card-title">Power Apps Alternatives</div>
         </div>
       </div>
 
-      <div class="visual-card">
-        <div class="visual-thumb visual-thumb--placeholder"></div>
+      <div class="visual-card" data-gallery="appsheet">
+        <img class="visual-thumb" src="assets/images/Glide vs Appsheets/Liv49n3LB7t8AhRCQ5Zm.png" alt="Glide vs AppSheet motion graphics" />
         <div class="visual-card-body">
           <div class="reel-item-label">Motion Graphics</div>
           <div class="visual-card-title">Glide Vs AppSheet</div>
         </div>
       </div>
 
-      <div class="visual-card">
-        <div class="visual-thumb visual-thumb--placeholder"></div>
+      <div class="visual-card" data-gallery="integrations">
+        <img class="visual-thumb" src="assets/images/Intro to Integrations/Cj903YR123JogXcOTetz.jpg" alt="Intro to Integrations illustrations" />
         <div class="visual-card-body">
-          <div class="reel-item-label">Motion Graphics</div>
-          <div class="visual-card-title">Intro to Actions</div>
+          <div class="reel-item-label">Illustration</div>
+          <div class="visual-card-title">Intro to Integrations</div>
         </div>
       </div>
 
-      <div class="visual-card">
-        <div class="visual-thumb visual-thumb--placeholder"></div>
+      <div class="visual-card" data-gallery="introapi">
+        <img class="visual-thumb" src="assets/images/Intro to API/bLorBZ01SLWae3w5wsr8.png" alt="Intro to API illustrations" />
         <div class="visual-card-body">
           <div class="reel-item-label">Blog Assets</div>
           <div class="visual-card-title">Intro to API</div>
         </div>
       </div>
 
-      <div class="visual-card">
-        <div class="visual-thumb visual-thumb--placeholder"></div>
+      <div class="visual-card" data-gallery="midjourney">
+        <img class="visual-thumb" src="assets/images/Sample Images/04XpW9BXAmPmFRxtcEK1.png" alt="Midjourney sample images" />
         <div class="visual-card-body">
           <div class="reel-item-label">AI Imagery</div>
-          <div class="visual-card-title">Mid Journey Samples</div>
+          <div class="visual-card-title">Sample Images</div>
         </div>
       </div>
 
-      <div class="visual-card">
-        <div class="visual-thumb visual-thumb--placeholder"></div>
+      <div class="visual-card" data-gallery="customerstories">
+        <img class="visual-thumb" src="assets/images/Customer Stories/jgoDKNLMbiZM0NI4qW3a.png" alt="Customer Stories illustrations" />
         <div class="visual-card-body">
           <div class="reel-item-label">Visual Assets</div>
           <div class="visual-card-title">Customer Stories</div>
@@ -1626,10 +1628,91 @@
     rowowners: {
       label: 'Motion Graphics',
       title: 'Row Owners',
+      video: 'https://www.youtube.com/watch?v=cMhjFlLiKuM',
+      overview: 'The images in this series are presented in sequence, each providing a unique context corresponding to different stages of the Row Owners video, for which I designed motion graphics. Below, you will find a brief description of the context for each image, organized according to their order in the carousel.',
       slides: [
-        { img: 'assets/images/Row Owners/2e17W7amZV8MtkhfucjR.png', desc: 'Row Owners secure private data by restricting row visibility to the assigned owner — while Filters let you display a specific subset of data based on conditions.' },
-        { img: 'assets/images/Row Owners/3u9eOQFEn6kHx0j6MdPy.png', desc: 'Filtering by role in action — Applicants see only their own records, while Admins see all entries. The same app, different views based on who is logged in.' },
-        { img: 'assets/images/Row Owners/yHs4LmEqliLwUyD5oLmL.png', desc: 'Row ownership keeps data private between users — each person sees only the tasks assigned to their email, with no visibility into anyone else\'s records.' },
+        { img: 'assets/images/Row Owners/2e17W7amZV8MtkhfucjR.png', desc: "If your app has information that's private to certain users, then you should use row owners as it's much more secure. If you have a data set where sometimes users see all the data and sometimes see only their own data, then you can use filtering." },
+        { img: 'assets/images/Row Owners/3u9eOQFEn6kHx0j6MdPy.png', desc: 'With filtering, you can have 2 lists reading from the same sheet and in one list, you could filter per user and in the other list, you could show all users, all items.' },
+        { img: 'assets/images/Row Owners/yHs4LmEqliLwUyD5oLmL.png', desc: 'By enabling row owner, you give complete ownership and therefore privacy to the user that owns that row. No other users can have access to that row in your app.' },
+      ]
+    },
+    powerapps: {
+      label: 'Motion Graphics',
+      title: 'Power Apps Alternatives',
+      video: 'https://www.youtube.com/watch?v=ztHNJT3kMos',
+      overview: 'The images in this series are presented in sequence, each providing a unique context corresponding to different stages of the Power Apps Alternatives video, for which I designed motion graphics. Below, you will find a brief description of the context for each image, organized according to their order in the carousel.',
+      slides: [
+        { img: 'assets/images/Power Apps Alternatives/C5ALy9NcX3kOBkgdUC4u.png', desc: 'With Glide, one license allows you to customise and share tools across your teams, customers, and partners.' },
+        { img: 'assets/images/Power Apps Alternatives/fehPFANjGkTnYo5lOhUT.png', desc: 'This approach to scaling is more cost-effective compared to Power Apps, where costs can escalate quickly with the addition of licenses, administrators, and external sharing.' },
+      ]
+    },
+    appsheet: {
+      label: 'Motion Graphics',
+      title: 'Glide Vs AppSheet',
+      video: 'https://www.youtube.com/watch?v=H8JMDUuYsW4',
+      overview: 'The images in this series are presented in sequence, each providing a unique context corresponding to different stages of the Glide vs. AppSheet video, for which I designed motion graphics. Below, you will find a brief description of the context for each image, organized according to their order in the carousel.',
+      slides: [
+        { img: 'assets/images/Glide vs Appsheets/Liv49n3LB7t8AhRCQ5Zm.png', desc: "One of Glide's main advantages is its cost-effective support for cost-effective growth." },
+        { img: 'assets/images/Glide vs Appsheets/WeDLPI3HmQ0Eo9jJ7qk2.png', desc: 'With plans adaptable to various business sizes, Glide allows you to expand your user base without significantly increasing costs.' },
+        { img: 'assets/images/Glide vs Appsheets/pPGko3PyonLAZT6ylSRe.png', desc: 'With plans adaptable to various business sizes, Glide allows you to expand your user base without significantly increasing costs.' },
+        { img: 'assets/images/Glide vs Appsheets/2RigzieDhW5rX89EWM7u.png', desc: 'AppSheet, especially when used outside of Google Workspace, involves additional licenses, making it a less budget-friendly option for businesses aiming for economical growth.' },
+        { img: 'assets/images/Glide vs Appsheets/EgovffGUpi9c0VyhHLXn.png', desc: 'AppSheet, especially when used outside of Google Workspace, involves additional licenses, making it a less budget-friendly option for businesses aiming for economical growth.' },
+      ]
+    },
+    integrations: {
+      label: 'Illustration',
+      title: 'Intro to Integrations',
+      overview: "These are some sample illustrations I did for Glide's Integrations launch project.",
+      slides: [
+        { img: 'assets/images/Intro to Integrations/Cj903YR123JogXcOTetz.jpg', desc: 'Hero illustration for the Integrations launch — the Glide wordmark surrounded by a constellation of supported integration icons.' },
+        { img: 'assets/images/Intro to Integrations/aw3gXWPzuUxU3PA5ZM3T.png', desc: 'Full grid of integration icons with a dramatic light-ray reveal effect, designed to convey the breadth of available connections.' },
+        { img: 'assets/images/Intro to Integrations/nIHmrBoP6TRt5cbVknE0.jpg', desc: 'Close-up spotlight on three featured integrations — Glide Tables, a companion app, and Zapier — each glowing against a dark teal backdrop.' },
+      ]
+    },
+    introapi: {
+      label: 'Blog Assets',
+      title: 'Intro to API',
+      blog: '#',
+      overview: "These illustrations were created for one of Glide's latest blog posts, 'Intro to APIs: Software Integration Like a Pro.'",
+      slides: [
+        { img: 'assets/images/Intro to API/bLorBZ01SLWae3w5wsr8.png', desc: 'A simple diagram illustrating the role of an API — the bridge between a client and a backend system.' },
+        { img: 'assets/images/Intro to API/4NN1LBuBttbvnWt58m80.png', desc: 'Two Glide app mockups showing real-world examples of API-powered data — a consultancy booking app and a job placement tracker.' },
+        { img: 'assets/images/Intro to API/FeRxKcn8CfnrkoSatc86.png', desc: 'A product catalogue app built in Glide, demonstrating how API data can be displayed across categorised collections.' },
+      ]
+    },
+    midjourney: {
+      label: 'AI Imagery',
+      title: 'Sample Images',
+      overview: 'These are some AI-generated images I created using Midjourney, intended for use in Glide videos, blogs, template apps, and other educational/marketing materials as sample data.',
+      slides: [
+        { img: 'assets/images/Sample Images/04XpW9BXAmPmFRxtcEK1.png', desc: 'A professional working at a laptop in a modern office setting — suitable for productivity or project management app templates.' },
+        { img: 'assets/images/Sample Images/4jt0JOrWKgsAKAcljY5X.png', desc: 'A construction worker in a hard hat on a job site — ideal for field operations or site management templates.' },
+        { img: 'assets/images/Sample Images/8jX1LyeB0TkaXujmh0DS.png', desc: 'A restaurant or food service scene — great for hospitality, ordering, or inventory management app visuals.' },
+        { img: 'assets/images/Sample Images/F8wfpGRU82EtF2mkWyEW.png', desc: 'A team collaborating in a modern office — useful for HR, team management, or internal tools templates.' },
+        { img: 'assets/images/Sample Images/ILO6Vxw056HzW096F28a.png', desc: 'A warehouse or logistics worker — fits supply chain, inventory, or field operations app contexts.' },
+        { img: 'assets/images/Sample Images/PTW8Jk5UTwmjkc6I2Xqg.png', desc: 'A 3D render of an industrial actuator unit — suitable for equipment catalogues or asset management templates.' },
+        { img: 'assets/images/Sample Images/VWCpBMuV6MOIgHkUwLTl.png', desc: 'A 3D render of a mechanical gearbox assembly — another variant for product catalogue or maintenance tracking apps.' },
+        { img: 'assets/images/Sample Images/XnI3egZJ0iAkIoxTOsfg.png', desc: 'A 3D render of an oval-form electronic control unit — ideal for IoT device catalogues or technical product listings.' },
+        { img: 'assets/images/Sample Images/eLs2YruEIXEmb9bYjFOc.png', desc: 'A 3D render of a compact mechanical assembly — fits manufacturing or engineering parts management apps.' },
+        { img: 'assets/images/Sample Images/f7WW4KJMMHCJAUDgeUC9.png', desc: 'A 3D render of a boxy industrial actuator with multiple port connections — useful for equipment specs or service management templates.' },
+        { img: 'assets/images/Sample Images/jHLyILp1Mgy1R1gHeSOf.png', desc: 'A 3D render of a larger industrial actuator with a flange mounting bracket — great for heavy equipment or maintenance apps.' },
+        { img: 'assets/images/Sample Images/uq9OyGBBLSznIuER5RWH.png', desc: 'A 3D render of an industrial gearbox with a side-mounted shaft output — another entry for engineering catalogue or spare parts templates.' },
+      ]
+    },
+    customerstories: {
+      label: 'Visual Assets',
+      title: 'Customer Stories',
+      overview: "These are some of the illustrations I created for Glide's customer stories blogs. The app UIs of these illustrations are rebuilt by me to mimic the original app.",
+      slides: [
+        { img: 'assets/images/Customer Stories/jgoDKNLMbiZM0NI4qW3a.png', desc: 'A field services business management app showing estimates, invoicing, payroll approval, and customer job scheduling.' },
+        { img: 'assets/images/Customer Stories/3SBv4kyao7bsVHCJUGqq.png', desc: 'A sales CRM showing a booked lead record with a call lead action, customer details, and lead type — built for a home services company.' },
+        { img: 'assets/images/Customer Stories/kBxUgYzAdiHOFL9LgO3f.png', desc: 'A recruitment agency app with a consultant dashboard tracking hours per week, plus an integrated interview calendar.' },
+        { img: 'assets/images/Customer Stories/41cCBVtIbOSzk4bOy8DO.png', desc: 'An accounting staffing app showing a consultant bookkeeping profile and a full placements list with job titles and clients.' },
+        { img: 'assets/images/Customer Stories/gfjFPYiq51bqkxkSGyNl.png', desc: 'A fresh produce marketplace app with a consumer storefront and a stats dashboard tracking quarterly stock sold and revenue.' },
+        { img: 'assets/images/Customer Stories/OUDSZDVpEEzCAQYL8Oh8.png', desc: 'A retail operations app for Manfield Paris 1844, covering shop locator, monthly reports, employees, and shoes inventory.' },
+        { img: 'assets/images/Customer Stories/GpQox7FUv7ye6cm38aDV.jpg', desc: 'Have A Hive — a beekeeping marketplace connecting Bee Shepherds with Sponsors, showing the branded welcome screen and account sign-up flow.' },
+        { img: 'assets/images/Customer Stories/NvtKM6ASqHF4iaeKVpYB.jpg', desc: 'A pump equipment management app with a detailed pump record showing deployment info, and an inventory list with live stock counts.' },
+        { img: 'assets/images/Customer Stories/Sotheby-s_-_Hero.png', desc: "Sotheby's First Look — a real estate listing app built in Glide for agents to browse and add property listings." },
       ]
     }
   };
@@ -1643,7 +1726,9 @@
   const lightboxDesc      = document.getElementById('lightboxDesc');
   const lightboxPrev      = document.getElementById('lightboxPrev');
   const lightboxNext      = document.getElementById('lightboxNext');
-  const lightboxVideoLink = document.getElementById('lightboxVideoLink');
+  const lightboxCta      = document.getElementById('lightboxCta');
+  const lightboxCtaIcon  = document.getElementById('lightboxCtaIcon');
+  const lightboxCtaLabel = document.getElementById('lightboxCtaLabel');
 
   let currentGallery = null;
   let currentIndex   = 0;
@@ -1670,10 +1755,17 @@
       lightboxOverview.textContent = gallery.overview || '';
       lightboxOverview.style.display = gallery.overview ? 'block' : 'none';
       if (gallery.video) {
-        lightboxVideoLink.href = gallery.video;
-        lightboxVideoLink.style.display = 'inline-flex';
+        lightboxCta.href = gallery.video;
+        lightboxCtaIcon.innerHTML = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6.5" stroke="currentColor"/><path d="M5.5 4.5l4 2.5-4 2.5V4.5z" fill="currentColor"/></svg>';
+        lightboxCtaLabel.textContent = 'Watch video';
+        lightboxCta.style.display = 'inline-flex';
+      } else if (gallery.blog) {
+        lightboxCta.href = gallery.blog;
+        lightboxCtaIcon.innerHTML = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="1.5" width="10" height="11" rx="1.5" stroke="currentColor"/><line x1="4.5" y1="5" x2="9.5" y2="5" stroke="currentColor" stroke-linecap="round"/><line x1="4.5" y1="7.5" x2="9.5" y2="7.5" stroke="currentColor" stroke-linecap="round"/><line x1="4.5" y1="10" x2="7.5" y2="10" stroke="currentColor" stroke-linecap="round"/></svg>';
+        lightboxCtaLabel.textContent = 'View blog post';
+        lightboxCta.style.display = 'inline-flex';
       } else {
-        lightboxVideoLink.style.display = 'none';
+        lightboxCta.style.display = 'none';
       }
       renderSlide();
       lightbox.classList.add('open');
