@@ -1194,10 +1194,10 @@
           See my work
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
-        <a href="#contact" class="btn btn-secondary">
-          Get in touch
+        <button id="copyEmailBtn" class="btn btn-secondary">
+          Email
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
+        </button>
       </div>
 
       <div class="proof">
@@ -1799,6 +1799,16 @@
       document.querySelectorAll('.reel-panel').forEach(p => p.classList.remove('active'));
       tab.classList.add('active');
       document.querySelector(`.reel-panel[data-panel="${tab.dataset.tab}"]`).classList.add('active');
+    });
+  });
+
+  // Copy email to clipboard
+  const copyEmailBtn = document.getElementById('copyEmailBtn');
+  copyEmailBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText('lasantha1012@gmail.com').then(() => {
+      const orig = copyEmailBtn.innerHTML;
+      copyEmailBtn.textContent = 'Copied!';
+      setTimeout(() => { copyEmailBtn.innerHTML = orig; }, 2000);
     });
   });
 </script>
