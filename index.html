@@ -437,7 +437,6 @@
     border-radius: 16px;
     position: relative;
     margin-bottom: 16px;
-    will-change: transform;
   }
 
   #work-header {
@@ -445,21 +444,6 @@
     padding-bottom: 24px;
     margin-bottom: 0;
   }
-
-  #work-sticky {
-    position: sticky;
-    top: var(--nav-h, 61px);
-    z-index: 10;
-    background: var(--bg);
-    height: calc(100vh - var(--nav-h, 61px));
-    overflow: hidden;
-    transition: height 0.35s ease-out;
-  }
-
-  .case-study:nth-child(1) { z-index: 1; }
-  .case-study:nth-child(2) { z-index: 2; }
-  .case-study:nth-child(3) { z-index: 3; }
-  .case-study:nth-child(4) { z-index: 4; }
 
   .case-number {
     font-family: 'Space Grotesk', sans-serif;
@@ -1220,7 +1204,6 @@
 
 <!-- FEATURED WORK -->
 <section class="section" id="work">
-  <div id="work-sticky">
 
   <div class="section-header" id="work-header">
     <div>
@@ -1359,7 +1342,6 @@
   </div>
 
   </div><!-- /.case-studies-list -->
-  </div><!-- /#work-sticky -->
 </section>
 
 <!-- REEL -->
@@ -1789,81 +1771,11 @@
     });
   });
 
-  // Sticky work section — one wrapper sticks, cards animate inside via scroll
-  const STACK_GAP = 80;
-  const SCROLL_PER_CARD = 400;
-  let workStackAnimate = null;
-
-  function setupWorkStack() {
+  // Set nav height CSS var (still needed for other layout)
+  (function() {
     const nav = document.querySelector('.top-bar');
-    const section = document.getElementById('work');
-    const sticky = document.getElementById('work-sticky');
-    const cards = Array.from(section.querySelectorAll('.case-study'));
-    if (!nav || !section || !sticky || !cards.length) return;
-
-    const navH = nav.offsetHeight;
-    document.documentElement.style.setProperty('--nav-h', navH + 'px');
-
-    // Reset
-    cards.forEach(c => { c.style.transform = ''; });
-    sticky.style.height = '';
-    section.style.minHeight = '';
-
-    // Measure
-    const cardHeights = cards.map(c => c.offsetHeight + 16);
-    const sectionPadTop = parseFloat(getComputedStyle(section).paddingTop);
-    const sectionPadBottom = parseFloat(getComputedStyle(section).paddingBottom);
-
-    // Travel distances for each card
-    const travels = cards.map((_, i) => {
-      if (i === 0) return 0;
-      let naturalTop = 0;
-      for (let j = 0; j < i; j++) naturalTop += cardHeights[j];
-      return naturalTop - i * STACK_GAP;
-    });
-
-    // Initial sticky height (set by CSS to 100vh - navH)
-    const initialStickyH = sticky.offsetHeight;
-
-    // Height of stacked content: header + list margin + stacked card positions + last card height
-    const workHeader = document.getElementById('work-header');
-    const caseList = section.querySelector('.case-studies-list');
-    const listMarginTop = parseFloat(getComputedStyle(caseList).marginTop);
-    const stackedH = workHeader.offsetHeight + listMarginTop + (cards.length - 1) * STACK_GAP + cards[cards.length - 1].offsetHeight + 32;
-
-    // Section needs enough scroll room for the stacking animation
-    section.style.minHeight = (initialStickyH + (cards.length - 1) * SCROLL_PER_CARD - sectionPadBottom + 80) + 'px';
-
-    if (workStackAnimate) window.removeEventListener('scroll', workStackAnimate);
-
-    let collapsed = false;
-
-    workStackAnimate = function () {
-      const sectionTop = section.getBoundingClientRect().top;
-      const scrolled = Math.max(0, navH - sectionPadTop - sectionTop);
-      const totalProgress = Math.min(1, scrolled / ((cards.length - 1) * SCROLL_PER_CARD));
-
-      cards.forEach((card, i) => {
-        if (i === 0) return;
-        const cardStart = (i - 1) * SCROLL_PER_CARD;
-        const progress = Math.max(0, Math.min(1, (scrolled - cardStart) / SCROLL_PER_CARD));
-        card.style.transform = `translateY(${-travels[i] * progress}px)`;
-      });
-
-      // Only collapse sticky after all cards are fully stacked — avoids clipping mid-animation
-      const shouldCollapse = totalProgress >= 1;
-      if (shouldCollapse !== collapsed) {
-        sticky.style.height = shouldCollapse ? stackedH + 'px' : '';
-        collapsed = shouldCollapse;
-      }
-    };
-
-    window.addEventListener('scroll', workStackAnimate, { passive: true });
-    workStackAnimate();
-  }
-
-  setupWorkStack();
-  window.addEventListener('resize', setupWorkStack);
+    if (nav) document.documentElement.style.setProperty('--nav-h', nav.offsetHeight + 'px');
+  })();
 
   // Copy email to clipboard
 
