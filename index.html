@@ -397,14 +397,28 @@
     background: var(--bg-2);
     border: 1px solid var(--line);
     border-radius: 16px;
-    position: sticky;
+    position: relative;
     margin-bottom: 16px;
+    will-change: transform;
   }
 
-  .case-study:nth-child(1) { top: 80px;  z-index: 1; }
-  .case-study:nth-child(2) { top: 160px; z-index: 2; }
-  .case-study:nth-child(3) { top: 240px; z-index: 3; }
-  .case-study:nth-child(4) { top: 320px; z-index: 4; }
+  #work-header {
+    padding-top: 24px;
+    padding-bottom: 24px;
+    margin-bottom: 0;
+  }
+
+  #work-sticky {
+    position: sticky;
+    top: var(--nav-h, 61px);
+    z-index: 10;
+    background: var(--bg);
+  }
+
+  .case-study:nth-child(1) { z-index: 1; }
+  .case-study:nth-child(2) { z-index: 2; }
+  .case-study:nth-child(3) { z-index: 3; }
+  .case-study:nth-child(4) { z-index: 4; }
 
   .case-number {
     font-family: 'Space Grotesk', sans-serif;
@@ -1163,7 +1177,9 @@
 
 <!-- FEATURED WORK -->
 <section class="section" id="work">
-  <div class="section-header">
+  <div id="work-sticky">
+
+  <div class="section-header" id="work-header">
     <div>
       <div class="section-eyebrow">Featured Work</div>
       <h2 class="section-title">Featured <span class="accent">case studies</span></h2>
@@ -1300,6 +1316,7 @@
   </div>
 
   </div><!-- /.case-studies-list -->
+  </div><!-- /#work-sticky -->
 </section>
 
 <!-- REEL -->
@@ -1715,7 +1732,65 @@
     });
   });
 
+  // Sticky work section — one wrapper sticks, cards animate inside via scroll
+  const STACK_GAP = 80;
+  const SCROLL_PER_CARD = 400;
+  let workStackAnimate = null;
+
+  function setupWorkStack() {
+    const nav = document.querySelector('.top-bar');
+    const section = document.getElementById('work');
+    const sticky = document.getElementById('work-sticky');
+    const cards = Array.from(section.querySelectorAll('.case-study'));
+    if (!nav || !section || !sticky || !cards.length) return;
+
+    const navH = nav.offsetHeight;
+    document.documentElement.style.setProperty('--nav-h', navH + 'px');
+
+    // Reset
+    cards.forEach(c => { c.style.transform = ''; });
+    section.style.minHeight = '';
+
+    // Measure card heights (include margin-bottom)
+    const cardHeights = cards.map(c => c.offsetHeight + 16);
+    // Use computed padding-top so scrolled=0 lines up exactly when sticky pins
+    const sectionPadTop = parseFloat(getComputedStyle(section).paddingTop);
+
+    // How far each card must travel upward to reach its stacked position
+    const travels = cards.map((_, i) => {
+      if (i === 0) return 0;
+      let naturalTop = 0;
+      for (let j = 0; j < i; j++) naturalTop += cardHeights[j];
+      return naturalTop - i * STACK_GAP;
+    });
+
+    // Section needs enough height for the sticky to remain pinned through all stacking
+    const stickyH = sticky.offsetHeight;
+    section.style.minHeight = (stickyH + (cards.length - 1) * SCROLL_PER_CARD + 400) + 'px';
+
+    // Remove previous listener before assigning new one (fixes resize-stacking bug)
+    if (workStackAnimate) window.removeEventListener('scroll', workStackAnimate);
+
+    workStackAnimate = function () {
+      const sectionTop = section.getBoundingClientRect().top;
+      const scrolled = Math.max(0, navH - sectionPadTop - sectionTop);
+      cards.forEach((card, i) => {
+        if (i === 0) return;
+        const cardStart = (i - 1) * SCROLL_PER_CARD;
+        const progress = Math.max(0, Math.min(1, (scrolled - cardStart) / SCROLL_PER_CARD));
+        card.style.transform = `translateY(${-travels[i] * progress}px)`;
+      });
+    };
+
+    window.addEventListener('scroll', workStackAnimate, { passive: true });
+    workStackAnimate();
+  }
+
+  setupWorkStack();
+  window.addEventListener('resize', setupWorkStack);
+
   // Copy email to clipboard
+
   const copyEmailBtn = document.getElementById('copyEmailBtn');
   copyEmailBtn.addEventListener('click', () => {
     navigator.clipboard.writeText('lasantha1012@gmail.com').then(() => {
