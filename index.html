@@ -415,6 +415,7 @@
     background: var(--bg);
     height: calc(100vh - var(--nav-h, 61px));
     overflow: hidden;
+    transition: height 0.35s ease-out;
   }
 
   .case-study:nth-child(1) { z-index: 1; }
@@ -1781,6 +1782,8 @@
 
     if (workStackAnimate) window.removeEventListener('scroll', workStackAnimate);
 
+    let collapsed = false;
+
     workStackAnimate = function () {
       const sectionTop = section.getBoundingClientRect().top;
       const scrolled = Math.max(0, navH - sectionPadTop - sectionTop);
@@ -1793,8 +1796,12 @@
         card.style.transform = `translateY(${-travels[i] * progress}px)`;
       });
 
-      // Shrink sticky wrapper to match stacked content — eliminates empty space below cards
-      sticky.style.height = Math.round(initialStickyH + (stackedH - initialStickyH) * totalProgress) + 'px';
+      // Only collapse sticky after all cards are fully stacked — avoids clipping mid-animation
+      const shouldCollapse = totalProgress >= 1;
+      if (shouldCollapse !== collapsed) {
+        sticky.style.height = shouldCollapse ? stackedH + 'px' : '';
+        collapsed = shouldCollapse;
+      }
     };
 
     window.addEventListener('scroll', workStackAnimate, { passive: true });
