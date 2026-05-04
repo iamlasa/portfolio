@@ -1202,10 +1202,10 @@
 <section class="section" id="work">
 
   <div class="section-header" id="work-header">
-    <div>
+    <div style="display: inline-flex; flex-direction: column; align-items: flex-start;">
       <div class="section-eyebrow">Featured Work</div>
-      <h2 class="section-title" id="work-title">Featured <span class="accent">case studies</span></h2>
-      <div class="section-meta" id="work-meta" style="text-align: left; margin-top: 8px; max-width: none;">Four projects from my time at Glide that defined how customers learn the product.</div>
+      <h2 class="section-title">Featured <span class="accent">case studies</span></h2>
+      <div class="section-meta" style="text-align: left; margin-top: 8px;">Four projects from my time at Glide that defined how customers learn the product.</div>
     </div>
   </div>
 
@@ -1343,10 +1343,10 @@
 <!-- REEL -->
 <section class="section" id="reel">
   <div class="section-header">
-    <div>
+    <div style="display: inline-flex; flex-direction: column; align-items: flex-start;">
       <div class="section-eyebrow">Design & Motion</div>
-      <h2 class="section-title" id="reel-title">Beyond the <span class="accent">education</span></h2>
-      <div class="section-meta" id="reel-meta" style="text-align: left; margin-top: 8px; max-width: none;">Besides the education work, I also love doing creative stuff. Here are some of the projects I've done at Glide that complement the education — spanning marketing, video, motion, and design.</div>
+      <h2 class="section-title">Beyond the <span class="accent">education</span></h2>
+      <div class="section-meta" style="text-align: left; margin-top: 8px;">Besides the education work, I also love doing creative stuff. Here are some of the projects I've done at Glide that complement the education — spanning marketing, video, motion, and design.</div>
     </div>
   </div>
 
@@ -1770,18 +1770,6 @@
     if (nav) document.documentElement.style.setProperty('--nav-h', nav.offsetHeight + 'px');
   })();
 
-  // Match section subtitle width to heading width
-  function matchMetaToTitle(titleId, metaId) {
-    const title = document.getElementById(titleId);
-    const meta = document.getElementById(metaId);
-    if (title && meta) meta.style.maxWidth = title.offsetWidth + 'px';
-  }
-  function syncMetaWidths() {
-    matchMetaToTitle('work-title', 'work-meta');
-    matchMetaToTitle('reel-title', 'reel-meta');
-  }
-  syncMetaWidths();
-  window.addEventListener('resize', syncMetaWidths);
 
   // Copy email to clipboard
 
