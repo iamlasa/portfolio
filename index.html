@@ -109,7 +109,7 @@
 
   .theme-toggle {
     background: none;
-    border: 1px solid var(--line-2);
+    border: none;
     border-radius: 6px;
     cursor: pointer;
     color: var(--muted);
@@ -121,7 +121,7 @@
     transition: color 0.2s, border-color 0.2s;
     margin-right: 12px;
   }
-  .theme-toggle:hover { color: var(--ink); border-color: var(--muted); }
+  .theme-toggle:hover { color: var(--ink); }
   .theme-toggle .icon-sun { display: none; }
   .theme-toggle .icon-moon { display: block; }
   html[data-theme="light"] .theme-toggle .icon-sun { display: block; }
@@ -1577,6 +1577,20 @@
 </footer>
 
 <script>
+  // Theme toggle
+  (function() {
+    const themeToggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    if (themeToggle) {
+      themeToggle.addEventListener('click', () => {
+        const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+      });
+    }
+  })();
+
   const galleries = {
     retool: {
       label: 'Motion Graphics',
