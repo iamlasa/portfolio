@@ -43,7 +43,7 @@
     top: 0;
     z-index: 50;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     padding: 20px 48px;
     border-bottom: 1px solid var(--line);
@@ -70,7 +70,7 @@
     box-shadow: 0 0 12px var(--accent);
   }
 
-  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links { display: flex; gap: 28px; align-items: center; position: absolute; left: 50%; transform: translateX(-50%); }
   .nav-links a {
     text-decoration: none;
     color: var(--muted);
