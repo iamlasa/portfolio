@@ -1777,8 +1777,28 @@
     const listMarginTop = parseFloat(getComputedStyle(caseList).marginTop);
     const stackedH = workHeader.offsetHeight + listMarginTop + (cards.length - 1) * STACK_GAP + cards[cards.length - 1].offsetHeight + 32;
 
-    // Section needs enough scroll room for the stacking animation
-    section.style.minHeight = (initialStickyH + (cards.length - 1) * SCROLL_PER_CARD - sectionPadBottom + 80) + 'px';
+    // Natural top of each card from sticky top (before any animation)
+    const naturalTops = cards.map((_, i) => {
+      let top = workHeader.offsetHeight + listMarginTop;
+      for (let j = 0; j < i; j++) top += cardHeights[j];
+      return top;
+    });
+
+    // Adjusted start scroll for each card: begin early enough that the card enters
+    // the viewport exactly when the previous card finishes stacking
+    const cardStarts = cards.map((_, i) => {
+      if (i === 0) return 0;
+      const defaultStart = (i - 1) * SCROLL_PER_CARD;
+      const hiddenAmount = naturalTops[i] - initialStickyH;
+      if (hiddenAmount <= 0 || travels[i] <= 0) return defaultStart;
+      const earlyBy = (hiddenAmount / travels[i]) * SCROLL_PER_CARD;
+      return Math.max(0, defaultStart - earlyBy);
+    });
+
+    const totalAnimationScroll = cardStarts[cards.length - 1] + SCROLL_PER_CARD;
+
+    // Section needs enough scroll room for the full animation
+    section.style.minHeight = (initialStickyH + totalAnimationScroll - sectionPadBottom + 80) + 'px';
 
     if (workStackAnimate) window.removeEventListener('scroll', workStackAnimate);
 
@@ -1787,12 +1807,11 @@
     workStackAnimate = function () {
       const sectionTop = section.getBoundingClientRect().top;
       const scrolled = Math.max(0, navH - sectionPadTop - sectionTop);
-      const totalProgress = Math.min(1, scrolled / ((cards.length - 1) * SCROLL_PER_CARD));
+      const totalProgress = Math.min(1, scrolled / totalAnimationScroll);
 
       cards.forEach((card, i) => {
         if (i === 0) return;
-        const cardStart = (i - 1) * SCROLL_PER_CARD;
-        const progress = Math.max(0, Math.min(1, (scrolled - cardStart) / SCROLL_PER_CARD));
+        const progress = Math.max(0, Math.min(1, (scrolled - cardStarts[i]) / SCROLL_PER_CARD));
         card.style.transform = `translateY(${-travels[i] * progress}px)`;
       });
 
