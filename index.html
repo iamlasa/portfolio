@@ -1764,9 +1764,12 @@
       return naturalTop - i * STACK_GAP;
     });
 
-    // Section needs enough height for the sticky to remain pinned through all stacking
+    // Section needs enough height for the sticky to remain pinned through all stacking.
+    // Formula: padTop + minHeight + padBottom - padTop - stickyH = scroll space needed
+    // => minHeight = stickyH + scrollSpace - padBottom + smallBreathing
     const stickyH = sticky.offsetHeight;
-    section.style.minHeight = (stickyH + (cards.length - 1) * SCROLL_PER_CARD + 400) + 'px';
+    const sectionPadBottom = parseFloat(getComputedStyle(section).paddingBottom);
+    section.style.minHeight = (stickyH + (cards.length - 1) * SCROLL_PER_CARD - sectionPadBottom + 80) + 'px';
 
     // Remove previous listener before assigning new one (fixes resize-stacking bug)
     if (workStackAnimate) window.removeEventListener('scroll', workStackAnimate);
