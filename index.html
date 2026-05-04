@@ -1751,14 +1751,15 @@
 
     // Reset
     cards.forEach(c => { c.style.transform = ''; });
+    sticky.style.height = '';
     section.style.minHeight = '';
 
-    // Measure card heights (include margin-bottom)
+    // Measure
     const cardHeights = cards.map(c => c.offsetHeight + 16);
-    // Use computed padding-top so scrolled=0 lines up exactly when sticky pins
     const sectionPadTop = parseFloat(getComputedStyle(section).paddingTop);
+    const sectionPadBottom = parseFloat(getComputedStyle(section).paddingBottom);
 
-    // How far each card must travel upward to reach its stacked position
+    // Travel distances for each card
     const travels = cards.map((_, i) => {
       if (i === 0) return 0;
       let naturalTop = 0;
@@ -1766,25 +1767,34 @@
       return naturalTop - i * STACK_GAP;
     });
 
-    // Section needs enough height for the sticky to remain pinned through all stacking.
-    // Formula: padTop + minHeight + padBottom - padTop - stickyH = scroll space needed
-    // => minHeight = stickyH + scrollSpace - padBottom + smallBreathing
-    const stickyH = sticky.offsetHeight;
-    const sectionPadBottom = parseFloat(getComputedStyle(section).paddingBottom);
-    section.style.minHeight = (stickyH + (cards.length - 1) * SCROLL_PER_CARD - sectionPadBottom + 80) + 'px';
+    // Initial sticky height (set by CSS to 100vh - navH)
+    const initialStickyH = sticky.offsetHeight;
 
-    // Remove previous listener before assigning new one (fixes resize-stacking bug)
+    // Height of stacked content: header + list margin + stacked card positions + last card height
+    const workHeader = document.getElementById('work-header');
+    const caseList = section.querySelector('.case-studies-list');
+    const listMarginTop = parseFloat(getComputedStyle(caseList).marginTop);
+    const stackedH = workHeader.offsetHeight + listMarginTop + (cards.length - 1) * STACK_GAP + cards[cards.length - 1].offsetHeight + 32;
+
+    // Section needs enough scroll room for the stacking animation
+    section.style.minHeight = (initialStickyH + (cards.length - 1) * SCROLL_PER_CARD - sectionPadBottom + 80) + 'px';
+
     if (workStackAnimate) window.removeEventListener('scroll', workStackAnimate);
 
     workStackAnimate = function () {
       const sectionTop = section.getBoundingClientRect().top;
       const scrolled = Math.max(0, navH - sectionPadTop - sectionTop);
+      const totalProgress = Math.min(1, scrolled / ((cards.length - 1) * SCROLL_PER_CARD));
+
       cards.forEach((card, i) => {
         if (i === 0) return;
         const cardStart = (i - 1) * SCROLL_PER_CARD;
         const progress = Math.max(0, Math.min(1, (scrolled - cardStart) / SCROLL_PER_CARD));
         card.style.transform = `translateY(${-travels[i] * progress}px)`;
       });
+
+      // Shrink sticky wrapper to match stacked content — eliminates empty space below cards
+      sticky.style.height = Math.round(initialStickyH + (stackedH - initialStickyH) * totalProgress) + 'px';
     };
 
     window.addEventListener('scroll', workStackAnimate, { passive: true });
