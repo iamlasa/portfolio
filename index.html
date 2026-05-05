@@ -146,7 +146,7 @@
   /* HERO */
   .hero {
     position: relative;
-    padding: 120px 48px 64px;
+    padding: 120px 48px 96px;
     max-width: 1400px;
     margin: 0 auto;
   }
@@ -318,23 +318,11 @@
   .proof {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-    margin-top: 56px;
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    overflow: hidden;
+    gap: 24px;
+    padding-top: 32px;
   }
 
-  .proof-item {
-    padding: 24px 28px;
-    border-right: 1px solid var(--line);
-  }
-
-  .proof-item:last-child {
-    border-right: none;
-  }
-
-  .proof-item { display: flex; flex-direction: column; gap: 6px; flex: 1; }
+  .proof-item { display: flex; flex-direction: column; gap: 6px; }
   .proof-num {
     font-size: 32px;
     font-weight: 600;
@@ -1111,10 +1099,7 @@
     .hero-inner { grid-template-columns: 1fr; gap: 48px; }
     h1 { font-size: clamp(40px, 10vw, 64px); }
     .description { font-size: 16px; }
-    .proof { grid-template-columns: repeat(2, 1fr); }
-    .proof-item { border-right: none; border-bottom: 1px solid var(--line); }
-    .proof-item:nth-child(odd) { border-right: 1px solid var(--line); }
-    .proof-item:last-child { border-bottom: none; }
+    .proof { gap: 16px; }
     .proof-num { font-size: 24px; }
     .section { padding: 64px 20px; }
     .section-header { flex-direction: column; align-items: flex-start; gap: 12px; }
