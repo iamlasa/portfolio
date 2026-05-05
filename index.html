@@ -144,22 +144,27 @@
   @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 
   /* HERO */
+  .hero-wrapper {
+    background: var(--bg-2);
+    position: relative;
+  }
+
+  .hero-wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(to bottom, transparent, var(--bg));
+    pointer-events: none;
+  }
+
   .hero {
     position: relative;
     padding: 120px 48px 64px;
     max-width: 1400px;
     margin: 0 auto;
-  }
-
-  .hero::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: -100vw;
-    right: -100vw;
-    height: 120px;
-    background: linear-gradient(to bottom, transparent, var(--bg));
-    pointer-events: none;
   }
 
 
@@ -1148,6 +1153,7 @@
 </div>
 
 <!-- HERO -->
+<div class="hero-wrapper">
 <section class="hero">
 
   <div class="hero-inner">
@@ -1208,6 +1214,7 @@
     </div>
   </div>
 </section>
+</div>
 
 <!-- FEATURED WORK -->
 <section class="section" id="work">
