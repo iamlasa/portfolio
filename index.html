@@ -630,17 +630,24 @@
     border: 1px solid var(--line);
     border-radius: 14px;
     display: flex;
-    flex-direction: column;
-    gap: 16px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
     transition: border-color 0.2s;
   }
 
+  .reel-item-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
+  }
 
   .reel-item-header {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 16px;
+    flex-direction: column;
+    gap: 0;
   }
 
   .reel-item-label {
@@ -1440,36 +1447,36 @@
     <div class="reel-items">
 
       <div class="reel-item">
-        <div class="reel-item-header">
-          <div>
-            <div class="reel-item-label">Podcast Editing</div>
+        <div class="reel-item-content">
+          <div class="reel-item-header">
+            <div class="reel-item-label">Podcast</div>
             <div class="reel-item-title">Jack Vaughan Podcast</div>
           </div>
-          <a href="https://www.youtube.com/@JackVaughan" target="_blank" class="case-link">Watch on YouTube <span class="arrow">→</span></a>
+          <p class="reel-item-desc">Edited podcast interviews recorded via Riverside — handling cuts, audio cleanup, pacing, and formatting for multi-platform distribution. Managed full upload and publishing workflow across all channels.</p>
         </div>
-        <p class="reel-item-desc">Edited podcast interviews recorded via Riverside — handling cuts, audio cleanup, pacing, and formatting for multi-platform distribution. Managed full upload and publishing workflow across all channels.</p>
+        <a href="https://www.youtube.com/@JackVaughan" target="_blank" class="case-link" style="flex-shrink: 0;">Watch on YouTube <span class="arrow">→</span></a>
       </div>
 
       <div class="reel-item">
-        <div class="reel-item-header">
-          <div>
+        <div class="reel-item-content">
+          <div class="reel-item-header">
             <div class="reel-item-label">Screencast</div>
             <div class="reel-item-title">Glide Product Walkthroughs</div>
           </div>
-          <a href="https://www.glideapps.com/data-sources" target="_blank" class="case-link">View on site <span class="arrow">→</span></a>
+          <p class="reel-item-desc">Recorded and produced screencast videos embedded directly on Glide's marketing pages — demonstrating product features and data sources to prospective users.</p>
         </div>
-        <p class="reel-item-desc">Recorded and produced screencast videos embedded directly on Glide's marketing pages — demonstrating product features and data sources to prospective users.</p>
+        <a href="https://www.glideapps.com/data-sources" target="_blank" class="case-link" style="flex-shrink: 0;">View on site <span class="arrow">→</span></a>
       </div>
 
       <div class="reel-item">
-        <div class="reel-item-header">
-          <div>
-            <div class="reel-item-label">YouTube — Glide</div>
+        <div class="reel-item-content">
+          <div class="reel-item-header">
+            <div class="reel-item-label">Youtube</div>
             <div class="reel-item-title">Customer Stories & Education Videos</div>
           </div>
-          <a href="https://www.youtube.com/@glideapps" target="_blank" class="case-link">View channel <span class="arrow">→</span></a>
+          <p class="reel-item-desc">Edited customer story videos and educational screencast content for Glide's official YouTube channel — covering product tutorials, feature highlights, and real customer use cases.</p>
         </div>
-        <p class="reel-item-desc">Edited customer story videos and educational screencast content for Glide's official YouTube channel — covering product tutorials, feature highlights, and real customer use cases.</p>
+        <a href="https://www.youtube.com/@glideapps" target="_blank" class="case-link" style="flex-shrink: 0;">View channel <span class="arrow">→</span></a>
       </div>
 
     </div>
