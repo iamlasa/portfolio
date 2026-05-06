@@ -1738,6 +1738,24 @@
       setTimeout(() => { copyEmailBtn.innerHTML = orig; }, 2000);
     });
   });
+
+  // Update URL hash based on scroll position
+  const scrollSections = document.querySelectorAll('section[id], footer[id]');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY < 100) {
+      history.replaceState(null, '', window.location.pathname);
+      return;
+    }
+    let current = '';
+    scrollSections.forEach(section => {
+      if (window.scrollY >= section.offsetTop - 120) {
+        current = section.id;
+      }
+    });
+    if (current) {
+      history.replaceState(null, '', '#' + current);
+    }
+  }, { passive: true });
 </script>
 </body>
 </html>
