@@ -1739,23 +1739,12 @@
     });
   });
 
-  // Update URL hash based on scroll position
-  const scrollSections = document.querySelectorAll('section[id], footer[id]');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY < 100) {
-      history.replaceState(null, '', window.location.pathname);
-      return;
-    }
-    let current = '';
-    scrollSections.forEach(section => {
-      if (window.scrollY >= section.offsetTop - 120) {
-        current = section.id;
-      }
+  // Always keep clean URL — remove hash after anchor navigation
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', () => {
+      setTimeout(() => history.replaceState(null, '', window.location.pathname), 0);
     });
-    if (current) {
-      history.replaceState(null, '', '#' + current);
-    }
-  }, { passive: true });
+  });
 </script>
 </body>
 </html>
