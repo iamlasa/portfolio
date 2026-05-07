@@ -1036,19 +1036,27 @@
 
   /* FOOTER */
   .linkedin-grid {
-    columns: 2;
-    column-gap: 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: start;
     margin-top: 48px;
   }
 
-  .linkedin-grid > * {
+  .linkedin-col {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .linkedin-col iframe,
+  .linkedin-col img {
     display: block;
     width: 100%;
-    break-inside: avoid;
-    margin-bottom: 24px;
     border-radius: 12px;
-    overflow: hidden;
   }
+
+  .linkedin-col img { height: auto; }
 
   footer {
     padding: 96px 0 32px;
@@ -1510,12 +1518,16 @@
   </div>
 
   <div class="linkedin-grid">
-    <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7215038778006994945" height="899" width="100%" frameborder="0" scrolling="no" allowfullscreen="" title="Embedded post"></iframe>
-    <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7211338880636055554" height="563" width="100%" frameborder="0" scrolling="no" allowfullscreen="" title="Embedded post"></iframe>
-    <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7197233470215966722" height="1300" width="100%" frameborder="0" scrolling="no" allowfullscreen="" title="Embedded post"></iframe>
-    <img src="assets/images/reviews/recommendation.png" alt="LinkedIn recommendation" style="height: auto;" />
-    <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7390034238219399168" height="1088" width="100%" frameborder="0" scrolling="no" allowfullscreen="" title="Embedded post"></iframe>
-    <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7357148749124546561" height="1125" width="100%" frameborder="0" scrolling="no" allowfullscreen="" title="Embedded post"></iframe>
+    <div class="linkedin-col">
+      <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7215038778006994945" height="899" width="100%" frameborder="0" scrolling="no" allowfullscreen="" title="Embedded post"></iframe>
+      <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7197233470215966722" height="1300" width="100%" frameborder="0" scrolling="no" allowfullscreen="" title="Embedded post"></iframe>
+      <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7390034238219399168" height="1088" width="100%" frameborder="0" scrolling="no" allowfullscreen="" title="Embedded post"></iframe>
+    </div>
+    <div class="linkedin-col">
+      <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7211338880636055554" height="563" width="100%" frameborder="0" scrolling="no" allowfullscreen="" title="Embedded post"></iframe>
+      <img src="assets/images/reviews/recommendation.png" alt="LinkedIn recommendation" />
+      <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7357148749124546561" height="1125" width="100%" frameborder="0" scrolling="no" allowfullscreen="" title="Embedded post"></iframe>
+    </div>
   </div>
 </section>
 
