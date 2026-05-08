@@ -386,9 +386,8 @@
   .btn:hover svg { transform: translateX(3px); }
 
   .proof {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
+    display: flex;
+    justify-content: space-between;
     padding-top: 32px;
   }
 
@@ -1273,13 +1272,13 @@
       <div class="hero-eyebrow">Customer Education Specialist</div>
 
       <h1>
-        I make <span class="accent">complex<br>
-        products</span> understood.
+        I close the gap between your<br>
+        <span class="accent">software</span> and your <span class="accent">users.</span>
       </h1>
 
       <div class="description-block">
         <p class="description-line">
-          I help tech companies turn their products into ones users actually understand through technical writing, interactive demos, and learning programs that scale.
+          I help tech companies turn their products into ones users actually understand through technical writing, interactive demos, and learning programs.
         </p>
         <p class="description-line">
           Education is my main craft. I also <strong>design, do video, work with APIs, and build automations</strong>. I spent four years doing all of this at <a href="https://www.glideapps.com" target="_blank">Glide</a>.
@@ -1299,19 +1298,19 @@
 
       <div class="proof">
         <div class="proof-item">
-          <div class="proof-num"><span class="neon-tick">+</span>4 years</div>
+          <div class="proof-num"><span class="neon-tick">+</span><span id="stat-years">0</span> years</div>
           <div class="proof-label">In SaaS</div>
         </div>
         <div class="proof-item">
-          <div class="proof-num"><span class="neon-tick">+</span>1,000</div>
+          <div class="proof-num"><span class="neon-tick">+</span><span id="stat-demos">0</span></div>
           <div class="proof-label">Product demos created</div>
         </div>
         <div class="proof-item">
-          <div class="proof-num"><span class="neon-tick">+</span>16k</div>
+          <div class="proof-num"><span class="neon-tick">+</span><span id="stat-lms">0</span>k</div>
           <div class="proof-label">LMS users managed</div>
         </div>
         <div class="proof-item">
-          <div class="proof-num"><span class="neon-tick">+</span>200</div>
+          <div class="proof-num"><span class="neon-tick">+</span><span id="stat-docs">0</span></div>
           <div class="proof-label">Technical docs managed/written</div>
         </div>
       </div>
@@ -1616,7 +1615,7 @@
     <div style="display: inline-flex; flex-direction: column; align-items: flex-start;">
       <div class="section-eyebrow"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Kind Words</div>
       <h2 class="section-title">What my <span class="accent">former colleagues</span> say</h2>
-      <p style="margin-top: 12px; color: var(--muted); font-size: 15px;">Some appreciation from the people I've worked with.</p>
+      <div class="section-meta" style="text-align: left; margin-top: 8px; max-width: 900px;">Some appreciation from the people I've worked with.</div>
     </div>
   </div>
 
@@ -1667,6 +1666,32 @@
 </footer>
 
 <script>
+  // Stat counter animation
+  (function() {
+    const stats = [
+      { id: 'stat-years', target: 4,    step: 1,   format: v => v },
+      { id: 'stat-demos', target: 1000, step: 100, format: v => v.toLocaleString() },
+      { id: 'stat-lms',   target: 16,   step: 1,   format: v => v },
+      { id: 'stat-docs',  target: 200,  step: 10,  format: v => v },
+    ];
+    const duration = 1800;
+    function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+    function animate(el, target, step, format) {
+      const start = performance.now();
+      function tick(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const stepped = Math.min(Math.round((easeOut(progress) * target) / step) * step, target);
+        el.textContent = format(stepped);
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+    stats.forEach(({ id, target, step, format }) => {
+      const el = document.getElementById(id);
+      if (el) animate(el, target, step, format);
+    });
+  })();
+
   // Nav avatar hover reveals hero photo
   (function() {
     const avatar = document.querySelector('.nav-avatar');
@@ -1682,7 +1707,7 @@
       const lastBtn = ctaRow.querySelector('.btn:last-child');
       const btnBottom = (lastBtn || ctaRow).getBoundingClientRect().bottom;
       const top = h1Rect.top - heroRect.top;
-      const height = btnBottom - h1Rect.top;
+      const height = btnBottom - h1Rect.top - 14;
       heroPhoto.style.top = top + 'px';
       heroPhoto.style.height = height + 'px';
     }
