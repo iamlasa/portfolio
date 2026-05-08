@@ -66,9 +66,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border-radius: 100px;
     overflow: hidden;
     border: 1px solid rgba(0, 0, 0, 0.04);
@@ -1866,10 +1866,10 @@
     window.addEventListener('scroll', () => {
       if (window.scrollY > 20) {
         inner.style.borderColor = 'rgba(0, 0, 0, 0.12)';
-        inner.style.background = 'rgba(255, 255, 255, 0.75)';
+        inner.style.background = 'rgba(255, 255, 255, 0.45)';
       } else {
         inner.style.borderColor = 'rgba(0, 0, 0, 0.04)';
-        inner.style.background = 'rgba(255, 255, 255, 0.4)';
+        inner.style.background = 'rgba(255, 255, 255, 0.15)';
       }
     }, { passive: true });
   })();
