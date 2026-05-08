@@ -1859,8 +1859,11 @@
     positionPhoto();
     window.addEventListener('resize', positionPhoto);
 
+    const nameMark = document.querySelector('.name-mark');
     avatar.addEventListener('mouseenter', () => heroPhoto.classList.add('visible'));
     avatar.addEventListener('mouseleave', () => heroPhoto.classList.remove('visible'));
+    nameMark.addEventListener('mouseenter', () => heroPhoto.classList.add('visible'));
+    nameMark.addEventListener('mouseleave', () => heroPhoto.classList.remove('visible'));
   })();
 
   // Scrolled nav state
