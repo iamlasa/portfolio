@@ -332,6 +332,15 @@
     text-shadow: 0 0 30px var(--accent-glow);
   }
 
+  .gap-span {
+    display: inline;
+    margin-left: 1.8em;
+    transition: margin-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  h1:hover .gap-span {
+    margin-left: 0;
+  }
+
   .description {
     font-size: 18px;
     line-height: 1.55;
@@ -1306,7 +1315,7 @@
       <div class="hero-eyebrow">Customer Education Specialist</div>
 
       <h1>
-        I close the gap between your<br>
+        I close <span class="gap-span">the gap</span> between your<br>
         <span class="accent">software</span> and your <span class="accent">users.</span>
       </h1>
 
