@@ -1679,9 +1679,10 @@
     function positionPhoto() {
       const heroRect = hero.getBoundingClientRect();
       const h1Rect = h1.getBoundingClientRect();
-      const ctaRect = ctaRow.getBoundingClientRect();
-      const top = h1Rect.top - heroRect.top + hero.scrollTop;
-      const height = ctaRect.bottom - h1Rect.top;
+      const lastBtn = ctaRow.querySelector('.btn:last-child');
+      const btnBottom = (lastBtn || ctaRow).getBoundingClientRect().bottom;
+      const top = h1Rect.top - heroRect.top;
+      const height = btnBottom - h1Rect.top;
       heroPhoto.style.top = top + 'px';
       heroPhoto.style.height = height + 'px';
     }
