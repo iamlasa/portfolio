@@ -1217,23 +1217,49 @@
   }
 
   /* MOBILE */
-  @media (max-width: 900px) {
-    .top-bar-inner { padding: 16px 20px; flex-wrap: wrap; gap: 12px; }
+  @media (max-width: 768px) {
+    /* NAV */
+    .top-bar { padding: 12px 16px; }
+    .top-bar-inner { max-width: 100%; padding: 0 16px 0 14px; height: 48px; }
     .nav-links { display: none; }
-    .hero { padding: 64px 20px 64px; }
-    .hero-inner { grid-template-columns: 1fr; gap: 48px; }
-    h1 { font-size: clamp(40px, 10vw, 64px); }
-    .description { font-size: 16px; }
-    .proof { gap: 16px; }
-    .proof-num { font-size: 24px; }
-    .section { padding: 64px 20px; }
-    .section-header { flex-direction: column; align-items: flex-start; gap: 12px; }
-    .section-meta { text-align: left; }
-    .case-study { padding: 28px; }
-    .reel-grid { grid-template-columns: 1fr; }
-    .skills-grid { grid-template-columns: 1fr 1fr; }
-    .about-grid { grid-template-columns: 1fr; gap: 32px; }
-    footer { padding: 64px 20px 24px; }
+    .theme-toggle { margin-right: 0; }
+
+    /* HERO */
+    .hero { padding: 32px 24px 48px; }
+    h1 { font-size: 36px; line-height: 42px; }
+    .hero-eyebrow { margin-bottom: 24px; }
+    .description-block { margin-bottom: 32px; }
+    .description-line { font-size: 15px; }
+    .cta-row { margin-bottom: 36px; }
+    .proof { flex-wrap: wrap; gap: 24px; }
+    .proof-item { width: calc(50% - 12px); }
+    .proof-num { font-size: 26px; }
+    .hero-photo { display: none; }
+
+    /* SECTIONS */
+    .section { padding: 60px 24px 0; }
+    .section-header { flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 32px; }
+    .section-title { font-size: 26px; }
+    .section-meta { max-width: 100%; }
+
+    /* FEATURED WORK */
+    .case-study { padding: 24px; }
+    .case-headline { font-size: 24px; }
+    .case-stats { flex-wrap: wrap; gap: 20px; }
+    .case-stat-num { font-size: 22px; }
+
+    /* VISUAL DESIGN */
+    .visual-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .reel-item { flex-direction: column; align-items: flex-start; gap: 16px; }
+
+    /* KIND WORDS */
+    .social-proof-card { padding: 24px; }
+    .linkedin-grid { grid-template-columns: 1fr; }
+
+    /* FOOTER */
+    footer { padding: 80px 0 24px; }
+    .footer-inner { padding: 0 24px; }
+    .footer-cta { font-size: 28px; line-height: 36px; margin-bottom: 40px; }
     .footer-grid { grid-template-columns: 1fr; gap: 24px; }
     .footer-bottom { flex-direction: column; gap: 8px; }
   }
