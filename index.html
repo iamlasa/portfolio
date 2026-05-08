@@ -609,7 +609,8 @@
   .case-block-text strong { font-weight: 500; color: var(--ink); }
   .case-block-text em { color: var(--ink); font-style: italic; font-weight: 500; }
 
-  .case-block-text a {
+  .case-block-text a,
+  .case-list a {
     color: var(--muted);
     text-decoration: none;
     font-weight: 500;
@@ -617,7 +618,8 @@
     transition: border-color 0.2s, color 0.2s;
   }
 
-  .case-block-text a:hover {
+  .case-block-text a:hover,
+  .case-list a:hover {
     color: var(--ink);
     border-bottom-color: var(--accent);
   }
