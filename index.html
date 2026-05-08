@@ -839,6 +839,53 @@
   }
 
   /* LIGHTBOX */
+  .photo-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 998;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 24px;
+  }
+  .photo-overlay.open { display: flex; }
+  .photo-overlay-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+  }
+  .photo-overlay-content {
+    position: relative;
+    z-index: 1;
+    border-radius: 24px;
+    overflow: hidden;
+    max-width: 340px;
+    width: 100%;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.4);
+  }
+  .photo-overlay-content img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: top;
+  }
+  .photo-overlay-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.5);
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
   .lightbox {
     display: none;
     position: fixed;
@@ -2067,11 +2114,30 @@
   });
 
   // Always keep clean URL — remove hash after anchor navigation
+  // Photo overlay
+  const photoOverlay = document.getElementById('photoOverlay');
+  document.querySelector('.nav-avatar-thumb').addEventListener('click', () => {
+    if (window.innerWidth <= 768) photoOverlay.classList.add('open');
+  });
+  document.getElementById('photoOverlayClose').addEventListener('click', () => photoOverlay.classList.remove('open'));
+  document.querySelector('.photo-overlay-backdrop').addEventListener('click', () => photoOverlay.classList.remove('open'));
+
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', () => {
       setTimeout(() => history.replaceState(null, '', window.location.pathname), 0);
     });
   });
 </script>
+
+<div class="photo-overlay" id="photoOverlay">
+  <div class="photo-overlay-backdrop"></div>
+  <div class="photo-overlay-content">
+    <img src="assets/images/hero.jpg" alt="Lasantha Pushpakumara">
+    <button class="photo-overlay-close" id="photoOverlayClose">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+</div>
+
 </body>
 </html>
