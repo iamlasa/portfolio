@@ -990,6 +990,8 @@
     cursor: default;
   }
 
+  .lightbox-nav-mobile { display: none; }
+
   .lightbox-video-link {
     display: inline-flex;
     align-items: center;
@@ -1287,6 +1289,28 @@
     .footer-cta { font-size: 28px; line-height: 36px; margin-bottom: 40px; }
     .footer-grid { grid-template-columns: 1fr; gap: 24px; }
     .footer-bottom { flex-direction: column; gap: 8px; }
+
+    /* LIGHTBOX — bottom sheet on mobile */
+    .lightbox.open { align-items: flex-end; justify-content: center; }
+    .lightbox-inner {
+      width: 100vw;
+      max-width: 100vw;
+      max-height: 88vh;
+      border-radius: 20px 20px 0 0;
+    }
+    .lightbox-header { padding: 16px 20px; }
+    .lightbox-overview { padding: 12px 20px; font-size: 13px; }
+    .lightbox-carousel { padding: 0 16px 24px; }
+    .lightbox-img-row { flex-direction: column; gap: 12px; }
+    .lightbox-img-row .lightbox-nav-btn { display: none; }
+    .lightbox-below {
+      padding: 0;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .lightbox-below .lightbox-nav-btn { display: flex; }
+    .lightbox-img { aspect-ratio: 16/9; width: 100%; }
   }
 
 </style>
@@ -1552,7 +1576,9 @@
               <button class="lightbox-nav-btn" id="lightboxNext">&#8594;</button>
             </div>
             <div class="lightbox-below">
+              <button class="lightbox-nav-btn lightbox-nav-mobile" id="lightboxPrevMobile">&#8592;</button>
               <p class="lightbox-slide-desc" id="lightboxDesc"></p>
+              <button class="lightbox-nav-btn lightbox-nav-mobile" id="lightboxNextMobile">&#8594;</button>
               <a class="lightbox-video-link" id="lightboxCta" href="#" target="_blank" rel="noopener noreferrer">
                 <span id="lightboxCtaIcon"></span>
                 <span id="lightboxCtaLabel"></span>
@@ -1934,8 +1960,12 @@
     lightboxDesc.textContent = slide.desc || '';
     lightboxDesc.style.display = slide.desc ? '' : 'none';
     lightboxCounter.textContent = `${currentIndex + 1} / ${currentGallery.slides.length}`;
-    lightboxPrev.disabled = currentIndex === 0;
-    lightboxNext.disabled = currentIndex === currentGallery.slides.length - 1;
+    const atStart = currentIndex === 0;
+    const atEnd = currentIndex === currentGallery.slides.length - 1;
+    lightboxPrev.disabled = atStart;
+    lightboxNext.disabled = atEnd;
+    document.getElementById('lightboxPrevMobile').disabled = atStart;
+    document.getElementById('lightboxNextMobile').disabled = atEnd;
   }
 
   document.querySelectorAll('.visual-card[data-gallery]').forEach(card => {
@@ -1968,13 +1998,13 @@
     });
   });
 
-  lightboxPrev.addEventListener('click', () => {
-    if (currentIndex > 0) { currentIndex--; renderSlide(); }
-  });
+  function goPrev() { if (currentIndex > 0) { currentIndex--; renderSlide(); } }
+  function goNext() { if (currentIndex < currentGallery.slides.length - 1) { currentIndex++; renderSlide(); } }
 
-  lightboxNext.addEventListener('click', () => {
-    if (currentIndex < currentGallery.slides.length - 1) { currentIndex++; renderSlide(); }
-  });
+  lightboxPrev.addEventListener('click', goPrev);
+  lightboxNext.addEventListener('click', goNext);
+  document.getElementById('lightboxPrevMobile').addEventListener('click', goPrev);
+  document.getElementById('lightboxNextMobile').addEventListener('click', goNext);
 
   document.addEventListener('keydown', e => {
     if (!lightbox.classList.contains('open')) return;
