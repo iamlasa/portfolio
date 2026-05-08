@@ -332,6 +332,22 @@
     text-shadow: 0 0 30px var(--accent-glow);
   }
 
+  .gap-pill {
+    display: inline;
+    background: rgba(245, 158, 11, 0.12);
+    border: 1.5px solid rgba(245, 158, 11, 0.55);
+    border-radius: 999px;
+    padding: 4px 16px;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    transition: background 0.5s ease, border-color 0.5s ease, padding 0.5s ease;
+  }
+  h1:hover .gap-pill {
+    background: transparent;
+    border-color: transparent;
+    padding: 4px 0;
+  }
+
   .gap-span {
     display: inline;
     margin-left: 1.8em;
@@ -1315,7 +1331,7 @@
       <div class="hero-eyebrow">Customer Education Specialist</div>
 
       <h1>
-        I close <span class="gap-span">the gap</span> between your<br>
+        I <span class="gap-pill">close <span class="gap-span">the gap</span></span> between your<br>
         <span class="accent">software</span> and your <span class="accent">users.</span>
       </h1>
 
