@@ -1255,7 +1255,19 @@
     .case-stat-num { font-size: 22px; }
 
     /* VISUAL DESIGN */
-    .visual-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .visual-grid {
+      display: flex;
+      flex-direction: row;
+      overflow-x: auto;
+      gap: 12px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 8px;
+    }
+    .visual-grid .visual-card {
+      flex: 0 0 80vw;
+      scroll-snap-align: start;
+    }
     .reel-item { flex-direction: column; align-items: flex-start; gap: 16px; }
 
     /* KIND WORDS */
