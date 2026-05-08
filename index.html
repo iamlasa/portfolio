@@ -337,7 +337,8 @@
     vertical-align: middle;
     width: 96px;
     overflow: hidden;
-    transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.35s ease;
+    margin: 0 10px;
+    transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.35s ease, margin 0.5s ease;
   }
   .gap-arrow svg {
     display: block;
@@ -347,6 +348,7 @@
   h1:hover .gap-arrow {
     width: 0;
     opacity: 0;
+    margin: 0;
   }
   h1:hover .gap-arrow svg {
     transform: scaleX(0);
@@ -1326,7 +1328,7 @@
       <div class="hero-eyebrow">Customer Education Specialist</div>
 
       <h1>
-        I close <span class="gap-arrow"><svg width="72" height="18" viewBox="0 0 72 18" fill="none" stroke="#F59E0B" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="68" y2="9"/><polyline points="14,3 4,9 14,15"/><polyline points="58,3 68,9 58,15"/></svg></span>the gap between your<br>
+        I close<span class="gap-arrow"><svg width="72" height="18" viewBox="0 0 72 18" fill="none" stroke="#F59E0B" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="68" y2="9"/><polyline points="14,3 4,9 14,15"/><polyline points="58,3 68,9 58,15"/></svg></span>the gap between your<br>
         <span class="accent">software</span> and your <span class="accent">users.</span>
       </h1>
 
