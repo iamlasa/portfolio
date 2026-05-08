@@ -1268,6 +1268,18 @@
     .footer-grid { grid-template-columns: 1fr; gap: 24px; }
     .footer-bottom { flex-direction: column; gap: 8px; }
   }
+
+  .flag-wave {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 3px;
+    transform-origin: left center;
+    animation: flagWave 2s ease-in-out infinite;
+  }
+  @keyframes flagWave {
+    0%, 100% { transform: perspective(200px) rotateY(0deg); }
+    50%       { transform: perspective(200px) rotateY(20deg); }
+  }
 </style>
 </head>
 <body>
@@ -1693,7 +1705,7 @@
 
     <div class="footer-bottom">
       <span>© 2026 Lasantha Pushpakumara. All rights reserved.</span>
-      <span style="display:inline-flex;align-items:center;gap:5px;"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg> Krosno, Poland 🇵🇱</span>
+      <span style="display:inline-flex;align-items:center;gap:5px;"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg> Krosno, Poland <span class="flag-wave"><svg width="20" height="14" viewBox="0 0 20 14" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="7" fill="#fff"/><rect y="7" width="20" height="7" fill="#DC143C"/><rect width="20" height="14" fill="none" stroke="rgba(0,0,0,0.12)" stroke-width="0.5"/></svg></span></span>
     </div>
   </div>
 </footer>
