@@ -321,7 +321,7 @@
   h1 {
     font-weight: 600;
     font-size: 48px;
-    line-height: 76px;
+    line-height: 64px;
     letter-spacing: -0.04em;
     margin-bottom: 32px;
     color: var(--ink);
@@ -332,27 +332,24 @@
     text-shadow: 0 0 30px var(--accent-glow);
   }
 
-  .gap-pill {
-    display: inline;
-    background: #F59E0B;
-    border-radius: 999px;
-    padding: 8px 22px;
-    -webkit-box-decoration-break: clone;
-    box-decoration-break: clone;
-    transition: background 0.5s ease, padding 0.5s ease;
+  .gap-arrow {
+    display: inline-block;
+    vertical-align: middle;
+    width: 96px;
+    overflow: hidden;
+    transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.35s ease;
   }
-  h1:hover .gap-pill {
-    background: transparent;
-    padding: 8px 0;
+  .gap-arrow svg {
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform-origin: center;
   }
-
-  .gap-span {
-    display: inline;
-    margin-left: 1.8em;
-    transition: margin-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  h1:hover .gap-arrow {
+    width: 0;
+    opacity: 0;
   }
-  h1:hover .gap-span {
-    margin-left: 0;
+  h1:hover .gap-arrow svg {
+    transform: scaleX(0);
   }
 
   .description {
@@ -1329,7 +1326,7 @@
       <div class="hero-eyebrow">Customer Education Specialist</div>
 
       <h1>
-        I <span class="gap-pill">close <span class="gap-span">the gap</span></span> between your<br>
+        I close <span class="gap-arrow"><svg width="72" height="14" viewBox="0 0 72 14" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="68" y2="7"/><polyline points="14,2 4,7 14,12"/><polyline points="58,2 68,7 58,12"/></svg></span>the gap between your<br>
         <span class="accent">software</span> and your <span class="accent">users.</span>
       </h1>
 
