@@ -1262,10 +1262,13 @@
       gap: 12px;
       -webkit-overflow-scrolling: touch;
       padding-bottom: 8px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
       margin-left: -24px;
       margin-right: -24px;
       padding-right: 24px;
     }
+    .visual-grid::-webkit-scrollbar { display: none; }
     .visual-grid .visual-card {
       flex: 0 0 80vw;
     }
