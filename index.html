@@ -100,6 +100,43 @@
     gap: 10px;
   }
 
+  .nav-avatar {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-avatar-thumb {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    cursor: pointer;
+  }
+
+  .nav-avatar-full {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%) scale(0.95) translateY(-6px);
+    width: 180px;
+    height: 220px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 14px;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 100;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+
+  .nav-avatar:hover .nav-avatar-full {
+    opacity: 1;
+    transform: translateX(-50%) scale(1) translateY(0);
+  }
+
 
   .nav-links { display: flex; gap: 28px; align-items: center; }
   .nav-links a {
@@ -159,6 +196,30 @@
     max-width: 1400px;
     margin: 0 auto;
     border-bottom: 1px solid var(--line);
+  }
+
+  .hero-photo {
+    position: absolute;
+    right: 120px;
+    width: 320px;
+    overflow: hidden;
+    border-radius: 16px;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    pointer-events: none;
+  }
+
+  .hero-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  .hero-photo.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
 
@@ -1182,7 +1243,12 @@
 <!-- TOP BAR -->
 <div class="top-bar">
   <div class="top-bar-inner">
-    <div class="name-mark">Lasa</div>
+    <div class="name-mark">
+      <div class="nav-avatar">
+        <img class="nav-avatar-thumb" src="assets/images/headshot.png" alt="Lasa">
+      </div>
+      Lasa
+    </div>
     <div style="display: flex; align-items: center; gap: 8px;">
       <div class="nav-links">
         <a href="#work">Work</a>
@@ -1254,6 +1320,11 @@
       </div>
     </div>
   </div>
+
+  <div class="hero-photo" id="heroPhoto">
+    <img src="assets/images/hero.jpg" alt="Lasantha Pushpakumara">
+  </div>
+
 </section>
 
 <!-- FEATURED WORK -->
@@ -1596,6 +1667,32 @@
 </footer>
 
 <script>
+  // Nav avatar hover reveals hero photo
+  (function() {
+    const avatar = document.querySelector('.nav-avatar');
+    const heroPhoto = document.getElementById('heroPhoto');
+    const hero = document.querySelector('.hero');
+    const h1 = document.querySelector('.hero h1');
+    const ctaRow = document.querySelector('.hero .cta-row');
+    if (!avatar || !heroPhoto || !hero || !h1 || !ctaRow) return;
+
+    function positionPhoto() {
+      const heroRect = hero.getBoundingClientRect();
+      const h1Rect = h1.getBoundingClientRect();
+      const ctaRect = ctaRow.getBoundingClientRect();
+      const top = h1Rect.top - heroRect.top + hero.scrollTop;
+      const height = ctaRect.bottom - h1Rect.top;
+      heroPhoto.style.top = top + 'px';
+      heroPhoto.style.height = height + 'px';
+    }
+
+    positionPhoto();
+    window.addEventListener('resize', positionPhoto);
+
+    avatar.addEventListener('mouseenter', () => heroPhoto.classList.add('visible'));
+    avatar.addEventListener('mouseleave', () => heroPhoto.classList.remove('visible'));
+  })();
+
   // Scrolled nav state
   (function() {
     const inner = document.querySelector('.top-bar-inner');
