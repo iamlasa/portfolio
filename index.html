@@ -321,7 +321,7 @@
   h1 {
     font-weight: 600;
     font-size: 48px;
-    line-height: 64px;
+    line-height: 76px;
     letter-spacing: -0.04em;
     margin-bottom: 32px;
     color: var(--ink);
@@ -333,11 +333,12 @@
   }
 
   .gap-pill {
-    display: inline-block;
-    vertical-align: -0.1em;
+    display: inline;
     background: #F59E0B;
     border-radius: 999px;
-    padding: 8px 24px;
+    padding: 8px 22px;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
     transition: background 0.5s ease, padding 0.5s ease;
   }
   h1:hover .gap-pill {
