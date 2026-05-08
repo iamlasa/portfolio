@@ -18,7 +18,7 @@
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #000000;
@@ -37,18 +37,18 @@
   }
 
   html[data-theme="light"] {
-    --bg: #F5F5F5;
+    --bg: #FFFFFF;
     --bg-2: #FFFFFF;
-    --bg-3: #EBEBEB;
-    --ink: #0A0A0A;
-    --muted: rgba(0, 0, 0, 0.5);
+    --bg-3: #F5F5F5;
+    --ink: #0D0D0D;
+    --muted: #6E6E6E;
     --muted-2: rgba(0, 0, 0, 0.25);
     --line: rgba(0, 0, 0, 0.08);
-    --line-2: rgba(0, 0, 0, 0.14);
-    --accent: rgba(0, 0, 0, 0.6);
-    --accent-glow: rgba(0, 0, 0, 0.06);
-    --dot: rgba(0, 0, 0, 0.5);
-    --nav-bg: rgba(245, 245, 245, 0.85);
+    --line-2: rgba(0, 0, 0, 0.12);
+    --accent: #0D0D0D;
+    --accent-glow: rgba(0, 0, 0, 0);
+    --dot: #0D0D0D;
+    --nav-bg: rgba(255, 255, 255, 0.85);
     --btn-primary-text: #FFFFFF;
   }
 
@@ -59,30 +59,36 @@
   body {
     background: var(--bg);
     color: var(--ink);
-    font-family: 'Geist', 'Inter', -apple-system, sans-serif;
+    font-family: 'Inter', -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
 
-  .mono { font-family: 'Space Grotesk', sans-serif; }
+  .mono { font-family: 'Inter', sans-serif; }
 
   /* TOP BAR */
   .top-bar {
     position: sticky;
     top: 0;
     z-index: 50;
-    background: var(--nav-bg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    padding: 16px 120px;
+    background: transparent;
   }
   .top-bar-inner {
-    max-width: 1400px;
+    max-width: 860px;
     margin: 0 auto;
-    padding: 20px 120px;
+    padding: 0 24px;
+    height: 56px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
-    position: relative;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 100px;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    transition: border-color 0.3s ease, background 0.3s ease;
+    box-shadow: rgba(59, 59, 59, 0.08) 0px 6px 10px 0px;
   }
 
   .name-mark {
@@ -94,24 +100,16 @@
     gap: 10px;
   }
 
-  .name-mark::before {
-    content: "";
-    width: 8px;
-    height: 8px;
-    background: var(--accent);
-    border-radius: 1px;
-    box-shadow: 0 0 12px var(--accent);
-  }
 
-  .nav-links { display: flex; gap: 28px; align-items: center; position: absolute; left: 50%; transform: translateX(-50%); pointer-events: auto; }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
   .nav-links a {
     text-decoration: none;
-    color: var(--muted);
+    color: var(--ink);
     font-size: 13px;
     font-weight: 500;
     transition: color 0.2s;
   }
-  .nav-links a:hover { color: var(--ink); }
+  .nav-links a:hover { color: var(--muted); }
 
   .status {
     display: flex;
@@ -119,7 +117,7 @@
     gap: 8px;
     font-size: 12px;
     color: var(--muted);
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Inter', sans-serif;
   }
 
   .theme-toggle {
@@ -184,7 +182,7 @@
     color: var(--muted);
     margin-bottom: 40px;
     font-weight: 500;
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Inter', sans-serif;
     padding: 6px 14px;
     border: 1px solid var(--line-2);
     border-radius: 999px;
@@ -199,27 +197,26 @@
     box-shadow: 0 0 8px var(--accent);
   }
 
-  /* Intro pill with photo (Jack-style) */
-  .intro-pill {
+  .hero-eyebrow {
     display: inline-flex;
     align-items: center;
-    gap: 12px;
-    padding: 6px 18px 6px 6px;
-    background: var(--bg-2);
-    border: 1px solid var(--line-2);
-    border-radius: 999px;
-    margin-bottom: 40px;
-    font-size: 14px;
-    font-weight: 500;
+    gap: 8px;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
     color: var(--ink);
+    margin-bottom: 40px;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    padding: 6px 14px;
+    background: #FAF9F6;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    transition: border-color 0.2s;
   }
 
-  .intro-pill-photo {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    object-fit: cover;
-    flex-shrink: 0;
+  .hero-eyebrow:hover {
+    border-color: rgba(0, 0, 0, 0.25);
   }
 
   h1 .filler {
@@ -238,16 +235,16 @@
   .description-line {
     font-size: 17px;
     line-height: 1.55;
-    color: var(--muted);
+    color: var(--ink);
   }
 
   .description-line strong {
-    color: var(--ink);
-    font-weight: 500;
+    color: var(--muted);
+    font-weight: 400;
   }
 
   .description-line a {
-    color: var(--ink);
+    color: var(--muted);
     text-decoration: none;
     border-bottom: 1px solid var(--muted-2);
     padding-bottom: 1px;
@@ -255,21 +252,21 @@
   }
 
   .description-line a:hover {
-    color: var(--accent);
-    border-bottom-color: var(--accent);
+    color: var(--ink);
+    border-bottom-color: var(--ink);
   }
 
   h1 {
     font-weight: 600;
-    font-size: clamp(36px, 4vw, 62px);
-    line-height: 0.98;
+    font-size: 48px;
+    line-height: 64px;
     letter-spacing: -0.04em;
     margin-bottom: 32px;
-    color: var(--muted);
+    color: var(--ink);
   }
 
   h1 .accent {
-    color: var(--ink);
+    color: var(--accent);
     text-shadow: 0 0 30px var(--accent-glow);
   }
 
@@ -345,10 +342,10 @@
 
   .proof-label {
     font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    font-family: 'Space Grotesk', sans-serif;
+    color: var(--ink);
+    letter-spacing: normal;
+    text-transform: none;
+    font-family: 'Inter', sans-serif;
   }
 
   /* HERO RIGHT — PROOF CARDS WITH SCREENSHOTS */
@@ -379,8 +376,8 @@
     border-bottom: none;
   }
   .social-proof-card {
-    background: var(--bg-2);
-    border: 1px solid var(--line);
+    background: #FAF9F6;
+    border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 20px;
     padding: 48px;
   }
@@ -394,43 +391,44 @@
   }
 
   .section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     font-size: 11px;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--ink);
     font-weight: 500;
     margin-bottom: 20px;
-    font-family: 'Space Grotesk', sans-serif;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    font-family: 'Inter', sans-serif;
+    padding: 6px 14px;
+    background: #FAF9F6;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    transition: border-color 0.2s;
   }
 
-  .section-eyebrow::before {
-    content: "";
-    width: 6px;
-    height: 6px;
-    background: var(--accent);
-    box-shadow: 0 0 6px var(--accent);
-    border-radius: 50%;
+  .section-eyebrow:hover {
+    border-color: rgba(0, 0, 0, 0.25);
   }
 
   .section-title {
     font-weight: 600;
-    font-size: clamp(36px, 4.5vw, 56px);
+    font-size: 32px;
     line-height: 1;
-    letter-spacing: -0.03em;
-    color: var(--muted);
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
   }
 
   .section-title .accent { color: var(--ink); }
 
   .section-meta {
     font-size: 13px;
-    color: var(--muted);
+    color: var(--ink);
     text-align: right;
     line-height: 1.6;
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Inter', sans-serif;
     max-width: 320px;
   }
 
@@ -447,11 +445,16 @@
     flex-direction: column;
     gap: 28px;
     padding: 40px;
-    background: var(--bg-2);
-    border: 1px solid var(--line);
+    background: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 16px;
     position: relative;
     margin-bottom: 16px;
+    transition: background 0.25s ease;
+  }
+
+  .case-study:hover {
+    background: #FAF9F6;
   }
 
   #work-header {
@@ -461,9 +464,9 @@
   }
 
   .case-number {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 12px;
-    color: var(--muted);
+    color: var(--ink);
     margin-bottom: 20px;
     letter-spacing: 0.05em;
   }
@@ -501,8 +504,8 @@
 
   .case-stat-label {
     font-size: 11px;
-    color: var(--muted);
-    font-family: 'Space Grotesk', sans-serif;
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
     letter-spacing: 0.05em;
   }
 
@@ -510,10 +513,10 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    color: var(--muted);
+    color: var(--ink);
     text-decoration: none;
     font-size: 12px;
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Inter', sans-serif;
     letter-spacing: 0.05em;
     text-transform: uppercase;
     transition: color 0.2s;
@@ -530,10 +533,10 @@
     font-size: 11px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--ink);
     font-weight: 500;
     margin-bottom: 12px;
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Inter', sans-serif;
   }
 
   .case-block-text {
@@ -578,7 +581,7 @@
     position: absolute;
     left: 0;
     color: var(--accent);
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Inter', sans-serif;
   }
 
   .case-list li strong { font-weight: 500; }
@@ -646,16 +649,18 @@
 
   .reel-item {
     padding: 32px;
-    background: var(--bg-2);
-    border: 1px solid var(--line);
+    background: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 14px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     gap: 32px;
-    transition: border-color 0.2s;
+    transition: background 0.25s ease;
   }
+
+  .reel-item:hover { background: #FAF9F6; }
 
   .reel-item-content {
     display: flex;
@@ -672,11 +677,21 @@
 
   .reel-item-label {
     font-size: 11px;
-    font-family: 'Space Grotesk', sans-serif;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: normal;
+    text-transform: none;
     color: var(--muted);
+    font-weight: 500;
     margin-bottom: 6px;
+  }
+
+  .reel-item .reel-item-label {
+    display: inline-flex;
+    align-self: flex-start;
+    padding: 4px 10px;
+    background: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
   }
 
   .reel-item-title {
@@ -701,7 +716,7 @@
 
   .reel-item-tag {
     font-size: 11px;
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Inter', sans-serif;
     letter-spacing: 0.05em;
     color: var(--muted);
     background: var(--bg-3);
@@ -722,14 +737,14 @@
     flex-direction: column;
     border-radius: 12px;
     overflow: hidden;
-    border: 1px solid var(--line);
-    background: var(--bg-2);
-    transition: border-color 0.2s, transform 0.2s;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: transparent;
+    transition: background 0.25s ease;
     cursor: pointer;
   }
 
   .visual-card[data-gallery] { cursor: pointer; }
-  .visual-card:hover { transform: translateY(-2px); }
+  .visual-card:hover { background: #FAF9F6; }
 
   .visual-thumb {
     width: 100%;
@@ -812,7 +827,7 @@
 
   .lightbox-counter {
     font-size: 12px;
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Inter', sans-serif;
     color: var(--muted);
   }
 
@@ -931,41 +946,29 @@
 
   .reel-card {
     aspect-ratio: 4 / 3;
-    background: var(--bg-2);
-    border: 1px solid var(--line-2);
+    background: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 12px;
     padding: 24px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: all 0.2s;
+    transition: background 0.25s ease;
     cursor: pointer;
     position: relative;
     overflow: hidden;
   }
 
-  .reel-card::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at center, var(--accent-glow) 0%, transparent 70%);
-    opacity: 0;
-    transition: opacity 0.3s;
-    pointer-events: none;
-  }
-
   .reel-card:hover {
-    transform: translateY(-2px);
+    background: #FAF9F6;
   }
-
-  .reel-card:hover::after { opacity: 1; }
 
   .reel-card-tag {
     font-size: 10px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--muted);
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 500;
   }
 
@@ -983,7 +986,7 @@
     text-align: center;
     padding: 48px 0 0;
     font-size: 13px;
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Inter', sans-serif;
   }
 
   /* SKILLS */
@@ -1010,7 +1013,7 @@
     letter-spacing: 0.05em;
     text-transform: uppercase;
     color: var(--ink);
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Inter', sans-serif;
     padding-bottom: 14px;
     border-bottom: 1px solid var(--line-2);
   }
@@ -1060,7 +1063,6 @@
     grid-template-columns: 1fr 1fr;
     column-gap: 50px;
     align-items: start;
-    margin-top: 48px;
   }
 
   .linkedin-col {
@@ -1099,15 +1101,15 @@
   }
 
   .footer-cta {
-    font-size: clamp(28px, 3.2vw, 48px);
-    line-height: 1.15;
-    letter-spacing: -0.035em;
+    font-size: 48px;
+    line-height: 64px;
+    letter-spacing: -0.04em;
     margin-bottom: 64px;
     font-weight: 600;
     color: var(--ink);
   }
 
-  .footer-cta .accent { color: var(--muted); }
+  .footer-cta .accent { color: var(--ink); }
 
   .footer-grid {
     display: grid;
@@ -1123,7 +1125,7 @@
     color: var(--muted);
     margin-bottom: 12px;
     font-weight: 500;
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Inter', sans-serif;
   }
 
   .footer-block a {
@@ -1149,7 +1151,7 @@
     justify-content: space-between;
     color: var(--muted-2);
     font-size: 12px;
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Inter', sans-serif;
   }
 
   /* MOBILE */
@@ -1180,16 +1182,19 @@
 <!-- TOP BAR -->
 <div class="top-bar">
   <div class="top-bar-inner">
-    <div class="nav-links">
-      <a href="#work">Work</a>
-      <a href="#contact">Contact</a>
+    <div class="name-mark">Lasa</div>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <div class="nav-links">
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <!-- Sun: shown in light mode -->
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <!-- Moon: shown in dark mode -->
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
     </div>
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-      <!-- Sun: shown in light mode -->
-      <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-      <!-- Moon: shown in dark mode -->
-      <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-    </button>
   </div>
 </div>
 
@@ -1199,20 +1204,16 @@
   <div class="hero-inner">
     <div class="hero-left">
 
-      <!-- Pill tag with photo -->
-      <div class="intro-pill">
-        <img class="intro-pill-photo" src="assets/images/headshot.png" alt="Lasa" />
-        <span>Hi, I'm Lasa</span>
-      </div>
+      <div class="hero-eyebrow">Customer Education Specialist</div>
 
       <h1>
-        I'm a <span class="accent">customer</span><br>
-        <span class="accent">education</span> specialist.
+        I make <span class="accent">complex<br>
+        products</span> understood.
       </h1>
 
       <div class="description-block">
         <p class="description-line">
-          I help SaaS teams turn complex products into ones users actually understand. I do this through technical writing, interactive demos, and learning programs that scale.
+          I help tech companies turn their products into ones users actually understand through technical writing, interactive demos, and learning programs that scale.
         </p>
         <p class="description-line">
           Education is my main craft. I also <strong>design, do video, work with APIs, and build automations</strong>. I spent four years doing all of this at <a href="https://www.glideapps.com" target="_blank">Glide</a>.
@@ -1226,7 +1227,7 @@
         </a>
         <button id="copyEmailBtn" class="btn btn-secondary">
           Email
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
         </button>
       </div>
 
@@ -1260,7 +1261,7 @@
 
   <div class="section-header" id="work-header">
     <div style="display: inline-flex; flex-direction: column; align-items: flex-start;">
-      <div class="section-eyebrow">Featured Work</div>
+      <div class="section-eyebrow"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Featured Work</div>
       <h2 class="section-title">Featured <span class="accent">case studies</span></h2>
       <div class="section-meta" style="text-align: left; margin-top: 8px; max-width: 900px;">Four of the main projects from my time at Glide that defined how customers learn the product.</div>
     </div>
@@ -1383,9 +1384,9 @@
 <section class="section" id="reel">
   <div class="section-header">
     <div style="display: inline-flex; flex-direction: column; align-items: flex-start;">
-      <div class="section-eyebrow">Design & Motion</div>
+      <div class="section-eyebrow"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19 7-7 3 3-7 7-3-3z"/><path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="m2 2 7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>Design & Motion</div>
       <h2 class="section-title"><span class="accent">Beyond</span> the education</h2>
-      <div class="section-meta" style="text-align: left; margin-top: 8px; max-width: 900px;">Besides the education work, I also love doing creative work. Here are some of the projects I've done<br>at Glide that complement the education spanning marketing, video, motion, and design.</div>
+      <div class="section-meta" style="text-align: left; margin-top: 8px; max-width: 900px;">Besides the education work, I also love doing creative work. Here are some of the projects I've done<br>at Glide that complement the education spanning <span style="color: var(--muted); font-weight: 500;">marketing, video, motion, and design.</span></div>
     </div>
   </div>
 
@@ -1540,15 +1541,15 @@
 
 <!-- SOCIAL PROOF -->
 <section class="section" id="social-proof">
-  <div class="social-proof-card">
-    <div class="section-header">
-      <div style="display: inline-flex; flex-direction: column; align-items: flex-start;">
-        <div class="section-eyebrow">Kind Words</div>
-        <h2 class="section-title">What my <span class="accent">former colleagues</span> say</h2>
-        <p style="margin-top: 12px; color: var(--muted); font-size: 15px;">Some appreciation from the people I've worked with.</p>
-      </div>
+  <div class="section-header">
+    <div style="display: inline-flex; flex-direction: column; align-items: flex-start;">
+      <div class="section-eyebrow"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Kind Words</div>
+      <h2 class="section-title">What my <span class="accent">former colleagues</span> say</h2>
+      <p style="margin-top: 12px; color: var(--muted); font-size: 15px;">Some appreciation from the people I've worked with.</p>
     </div>
+  </div>
 
+  <div class="social-proof-card">
     <div class="linkedin-grid">
       <div class="linkedin-col">
         <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7357148749124546561" height="1110" width="100%" frameborder="0" scrolling="no" allowfullscreen="" title="Embedded post"></iframe>
@@ -1595,6 +1596,20 @@
 </footer>
 
 <script>
+  // Scrolled nav state
+  (function() {
+    const inner = document.querySelector('.top-bar-inner');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        inner.style.borderColor = 'rgba(0, 0, 0, 0.12)';
+        inner.style.background = 'rgba(255, 255, 255, 0.75)';
+      } else {
+        inner.style.borderColor = 'rgba(0, 0, 0, 0.04)';
+        inner.style.background = 'rgba(255, 255, 255, 0.4)';
+      }
+    }, { passive: true });
+  })();
+
   // Theme toggle
   (function() {
     const themeToggle = document.getElementById('themeToggle');
