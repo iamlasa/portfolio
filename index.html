@@ -1273,10 +1273,11 @@
     h1 { font-size: 40px; line-height: 48px; margin-bottom: 20px; }
     .description-block { margin-bottom: 32px; gap: 12px; }
     .description-line { font-size: 15px; }
-    .proof { flex-direction: column; gap: 24px; }
-    .proof-item { width: 100%; }
+    .proof { flex-direction: column; gap: 0; padding-top: 40px; }
+    .proof-item { width: 100%; padding: 28px 0; border-bottom: 1px solid var(--line); }
+    .proof-item:last-child { border-bottom: none; }
     .proof-num { font-size: 48px; line-height: 1; }
-    .proof-label { font-size: 15px; margin-top: 6px; }
+    .proof-label { font-size: 15px; margin-top: 8px; }
 
     /* SECTIONS */
     .section { padding: 60px 24px 0; }
