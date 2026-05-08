@@ -1833,10 +1833,18 @@
       }
       requestAnimationFrame(tick);
     }
-    stats.forEach(({ id, target, step, format }) => {
-      const el = document.getElementById(id);
-      if (el) animate(el, target, step, format);
-    });
+    const firstEl = document.getElementById(stats[0].id);
+    if (!firstEl) return;
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        stats.forEach(({ id, target, step, format }) => {
+          const el = document.getElementById(id);
+          if (el) animate(el, target, step, format);
+        });
+        observer.disconnect();
+      }
+    }, { threshold: 0.3 });
+    observer.observe(firstEl);
   })();
 
   // Nav avatar hover reveals hero photo
