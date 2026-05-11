@@ -940,20 +940,20 @@
 
   .lightbox-close {
     background: var(--bg-3);
-    border: 1px solid var(--line);
+    border: 1px solid var(--line-2);
     border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    color: var(--muted);
+    width: 36px;
+    height: 36px;
+    color: var(--ink);
     font-size: 13px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: color 0.2s, border-color 0.2s;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
   }
 
-  .lightbox-close:hover { color: var(--ink); border-color: var(--muted); }
+  .lightbox-close:hover { background: var(--ink); border-color: var(--ink); color: var(--bg); }
 
   .lightbox-overview {
     font-size: 15px;
