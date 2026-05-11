@@ -1010,8 +1010,8 @@
     flex-shrink: 0;
     width: 36px;
     height: 36px;
-    background: var(--bg-2);
-    border: 1px solid var(--line);
+    background: var(--bg-3);
+    border: 1px solid var(--line-2);
     border-radius: 50%;
     color: var(--ink);
     font-size: 16px;
@@ -1019,12 +1019,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.15s, border-color 0.15s;
+    transition: background 0.15s, border-color 0.15s, transform 0.15s;
   }
 
   .lightbox-nav-btn:hover {
-    background: var(--bg-3);
-    border-color: var(--muted);
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--bg);
   }
 
   .lightbox-nav-btn:disabled {
