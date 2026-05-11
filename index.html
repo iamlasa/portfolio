@@ -1346,14 +1346,21 @@
     .lightbox-img-row .lightbox-nav-btn { display: none; }
     .lightbox-img { width: 100%; aspect-ratio: 16/9; }
     .lightbox-below {
+      display: grid;
+      grid-template-columns: 36px 1fr 36px;
+      grid-template-areas:
+        "desc desc desc"
+        "prev cta  next";
+      gap: 16px 12px;
       padding: 0;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 12px;
-      margin-top: 12px;
+      margin-top: 4px;
+      align-items: center;
     }
-    .lightbox-below .lightbox-nav-btn { display: flex; flex-shrink: 0; }
+    .lightbox-below .lightbox-slide-desc { grid-area: desc; }
+    .lightbox-below #lightboxPrevMobile { grid-area: prev; }
+    .lightbox-below #lightboxNextMobile { grid-area: next; }
+    .lightbox-below .lightbox-video-link { grid-area: cta; justify-self: center; }
+    .lightbox-below .lightbox-nav-btn { display: flex; }
   }
 
 </style>
