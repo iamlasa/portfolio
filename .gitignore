@@ -2,3 +2,16 @@
 .DS_Store
 assets/.DS_Store
 assets/images/.DS_Store
+
+# Local tooling artifacts
+.claude/
+.playwright-mcp/
+
+# Local backup images — kept on disk as fallbacks, intentionally not committed
+assets/images/image1.png
+assets/images/reviews/cait.png
+assets/images/reviews/jack 1.png
+assets/images/reviews/jack 2.png
+assets/images/reviews/rhys.png
+assets/images/reviews/sepy 1.png
+assets/images/reviews/sepy 2.png
