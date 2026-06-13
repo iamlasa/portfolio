@@ -257,6 +257,13 @@
     max-width: 1400px;
     margin: 0 auto;
     border-bottom: 1px solid var(--line);
+    /* Fill the viewport below the sticky nav (16+56+16 = 88px) and
+       vertically center the content so the hero reads as a clean
+       above-the-fold view. */
+    min-height: calc(100vh - 88px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .hero-photo {
@@ -1342,7 +1349,7 @@
     .burger { display: flex; }
 
     /* HERO */
-    .hero { padding: 48px 24px 64px; }
+    .hero { padding: 48px 24px 64px; min-height: 0; display: block; }
     .hero-photo { display: none; }
     .hero-inner { padding: 0; }
     h1 { font-size: 40px; line-height: 48px; margin-bottom: 20px; }
