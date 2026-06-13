@@ -79,7 +79,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:wght@600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #FFFFFF;
+    --bg: #f4f1eb;
     --bg-2: #FFFFFF;
     --bg-3: #F5F5F5;
     --ink: #0D0D0D;
@@ -119,7 +119,7 @@
   .top-bar-inner {
     max-width: 860px;
     margin: 0 auto;
-    padding: 0 28px 0 14px;
+    padding: 0 28px 0 20px;
     height: 56px;
     display: flex;
     justify-content: space-between;
@@ -135,8 +135,8 @@
   }
 
   .name-mark {
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 15px;
+    font-weight: 700;
     letter-spacing: -0.01em;
     display: flex;
     align-items: center;
@@ -253,7 +253,7 @@
   /* HERO */
   .hero {
     position: relative;
-    padding: 56px 120px 48px;
+    padding: 56px 120px 88px;
     max-width: 1400px;
     margin: 0 auto;
     border-bottom: 1px solid var(--line);
@@ -273,10 +273,8 @@
     width: 320px;
     overflow: hidden;
     border-radius: 16px;
-    opacity: 0;
-    transform: translateY(12px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
-    pointer-events: none;
+    /* Nudge the whole image up slightly for tighter alignment with the pill/CTAs. */
+    margin-top: -20px;
   }
 
   .hero-photo img {
@@ -284,11 +282,7 @@
     height: 100%;
     object-fit: cover;
     object-position: center 85%;
-  }
-
-  .hero-photo.visible {
-    opacity: 1;
-    transform: translateY(0);
+    transform: scale(1.15);
   }
 
 
@@ -341,19 +335,19 @@
     font-size: 11px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--ink);
-    margin-bottom: 12px;
+    color: #FFFFFF;
+    margin-bottom: 20px;
     font-weight: 500;
     font-family: 'Inter', sans-serif;
     padding: 6px 14px;
-    background: #F5F5F7;
-    border: 1px solid rgba(0, 0, 0, 0.06);
+    background: #BD4B28;
+    border: 2px solid #F5F5F7;
     border-radius: 999px;
     transition: border-color 0.2s;
   }
 
   .hero-eyebrow:hover {
-    border-color: rgba(0, 0, 0, 0.25);
+    border-color: #F5F5F7;
   }
 
   h1 .filler {
@@ -363,7 +357,10 @@
 
   .description-block {
     max-width: 660px;
-    margin-bottom: 40px;
+    /* Larger gap above + smaller gap below groups the subtext with the CTAs
+       (mirrors the tight pill+headline pairing) without moving the buttons. */
+    margin-top: 36px;
+    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -381,22 +378,22 @@
   }
 
   .description-line a {
-    color: var(--muted);
+    color: #BD4A28;
     text-decoration: none;
-    border-bottom: 1px solid var(--muted-2);
+    border-bottom: 1px solid rgba(189, 74, 40, 0.35);
     padding-bottom: 1px;
     transition: border-color 0.2s, color 0.2s;
   }
 
   .description-line a:hover {
-    color: var(--ink);
-    border-bottom-color: var(--ink);
+    color: #BD4A28;
+    border-bottom-color: #BD4A28;
   }
 
   h1 {
     font-family: 'Source Serif 4', serif;
     font-weight: 600;
-    font-size: 44px;
+    font-size: 60px;
     line-height: 56px;
     letter-spacing: -0.02em;
     margin-bottom: 24px;
@@ -443,7 +440,7 @@
     letter-spacing: -0.01em;
   }
 
-  .btn-primary { background: var(--ink); color: var(--btn-primary-text); }
+  .btn-primary { background: #BD4A28; color: var(--btn-primary-text); }
   .btn-primary:hover {
     box-shadow: 0 0 32px var(--accent-glow);
     transform: translateY(-1px);
@@ -465,21 +462,30 @@
 
   .proof {
     display: flex;
-    justify-content: space-between;
-    padding-top: 32px;
+    padding-top: 28px;
     /* Pin the stats row to the bottom of the hero so it sits at the fold. */
     margin-top: auto;
+    /* Subtle top line across the stats band. */
+    border-top: 1px solid var(--line);
   }
 
-  .proof-item { display: flex; flex-direction: column; gap: 6px; }
+  /* Equal columns, with a thin vertical divider before each stat after the first. */
+  .proof-item { display: flex; flex-direction: column; gap: 6px; flex: 1; }
+  .proof-item + .proof-item {
+    border-left: 1px solid var(--line);
+  }
+  /* Span the numbers across the full content width: left / center / right. */
+  .proof-item:nth-child(1) { align-items: flex-start; }
+  .proof-item:nth-child(2) { align-items: center; }
+  .proof-item:nth-child(3) { align-items: flex-end; }
   .proof-num {
     font-family: 'Source Serif 4', serif;
-    font-size: 32px;
+    font-size: 60px;
     font-weight: 600;
     letter-spacing: -0.03em;
-    color: var(--ink);
+    color: #BD4A28;
   }
-  .proof-num .neon-tick { color: var(--accent); margin-left: 2px; }
+  .proof-num .neon-tick { color: #BD4A28; margin-left: 2px; }
 
   .proof-label {
     font-size: 11px;
@@ -517,7 +523,7 @@
     border-bottom: none;
   }
   .social-proof-card {
-    background: #F5F5F7;
+    background: #EFE7D9;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 20px;
     padding: 48px;
@@ -538,12 +544,12 @@
     font-size: 11px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--ink);
+    color: #FFFFFF;
     font-weight: 500;
     margin-bottom: 20px;
     font-family: 'Inter', sans-serif;
     padding: 6px 14px;
-    background: #F5F5F7;
+    background: #BD4A28;
     border: 1px solid transparent;
     border-radius: 999px;
     transition: border-color 0.2s;
@@ -586,7 +592,7 @@
     flex-direction: column;
     gap: 28px;
     padding: 40px;
-    background: #F5F5F7;
+    background: #EFE7D9;
     border-radius: 16px;
     position: relative;
     margin-bottom: 16px;
@@ -686,17 +692,17 @@
 
   .case-block-text a,
   .case-list a {
-    color: var(--muted);
+    color: #BD4A28;
     text-decoration: none;
     font-weight: 500;
-    border-bottom: 1px solid var(--muted-2);
+    border-bottom: 1px solid rgba(189, 74, 40, 0.35);
     transition: border-color 0.2s, color 0.2s;
   }
 
   .case-block-text a:hover,
   .case-list a:hover {
-    color: var(--ink);
-    border-bottom-color: var(--accent);
+    color: #BD4A28;
+    border-bottom-color: #BD4A28;
   }
 
   .case-list {
@@ -724,15 +730,15 @@
 
   .case-list li strong { font-weight: 500; }
   .case-list li a {
-    color: var(--muted);
+    color: #BD4A28;
     text-decoration: none;
     font-weight: 400;
-    border-bottom: 1px solid var(--muted-2);
+    border-bottom: 1px solid rgba(189, 74, 40, 0.35);
     transition: border-color 0.2s, color 0.2s;
   }
   .case-list li a:hover {
-    color: var(--ink);
-    border-bottom-color: var(--ink);
+    color: #BD4A28;
+    border-bottom-color: #BD4A28;
   }
 
   /* REEL */
@@ -788,7 +794,7 @@
 
   .reel-item {
     padding: 32px;
-    background: #F5F5F7;
+    background: #EFE7D9;
     border-radius: 14px;
     display: flex;
     flex-direction: row;
@@ -872,7 +878,7 @@
     flex-direction: column;
     border-radius: 12px;
     overflow: hidden;
-    background: #F5F5F7;
+    background: #EFE7D9;
     cursor: pointer;
     transition: transform 0.2s ease;
   }
@@ -1367,6 +1373,7 @@
     .description-line { font-size: 15px; }
     .proof { flex-direction: column; gap: 0; padding-top: 40px; }
     .proof-item { width: 100%; padding: 28px 0; border-bottom: 1px solid var(--line); }
+    .proof-item + .proof-item { border-left: none; padding-left: 0; }
     .proof-item:last-child { border-bottom: none; }
     .proof-num { font-size: 48px; line-height: 1; }
     .proof-label { font-size: 15px; margin-top: 8px; }
@@ -1457,9 +1464,6 @@
 <div class="top-bar">
   <div class="top-bar-inner">
     <a class="name-mark" href="/" style="text-decoration: none; color: inherit;">
-      <div class="nav-avatar">
-        <img class="nav-avatar-thumb" src="assets/images/headshot.png" alt="Lasa">
-      </div>
       Lasa
     </a>
     <div style="display: flex; align-items: center; gap: 8px;">
@@ -1489,7 +1493,7 @@
       <div class="hero-eyebrow">Customer Education</div>
 
       <h1>
-        I help your users understand<br>your product.
+        I help your users<br>understand your product.
       </h1>
 
       <div class="description-block">
@@ -1847,16 +1851,6 @@
   </div>
 </footer>
 
-<div class="photo-overlay" id="photoOverlay">
-  <div class="photo-overlay-backdrop"></div>
-  <div class="photo-overlay-content">
-    <img src="assets/images/hero.jpg" alt="Lasantha Pushpakumara">
-    <button class="photo-overlay-close" id="photoOverlayClose">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-  </div>
-</div>
-
 <!-- Lightbox -->
 <div class="lightbox" id="lightbox">
   <div class="lightbox-overlay"></div>
@@ -1925,34 +1919,26 @@
     observer.observe(firstEl);
   })();
 
-  // Nav avatar hover reveals hero photo
+  // Size and position the always-visible hero photo alongside the text block
   (function() {
-    const avatar = document.querySelector('.nav-avatar');
     const heroPhoto = document.getElementById('heroPhoto');
     const hero = document.querySelector('.hero');
-    const h1 = document.querySelector('.hero h1');
+    const eyebrow = document.querySelector('.hero .hero-eyebrow');
     const ctaRow = document.querySelector('.hero .cta-row');
-    if (!avatar || !heroPhoto || !hero || !h1 || !ctaRow) return;
+    if (!heroPhoto || !hero || !eyebrow || !ctaRow) return;
 
     function positionPhoto() {
       const heroRect = hero.getBoundingClientRect();
-      const h1Rect = h1.getBoundingClientRect();
+      const eyebrowTop = eyebrow.getBoundingClientRect().top;
       const lastBtn = ctaRow.querySelector('.btn:last-child');
       const btnBottom = (lastBtn || ctaRow).getBoundingClientRect().bottom;
-      const top = h1Rect.top - heroRect.top;
-      const height = btnBottom - h1Rect.top - 14;
-      heroPhoto.style.top = top + 'px';
-      heroPhoto.style.height = height + 'px';
+      // Top aligns with the top of the eyebrow pill; bottom with the CTA buttons.
+      heroPhoto.style.top = (eyebrowTop - heroRect.top) + 'px';
+      heroPhoto.style.height = (btnBottom - eyebrowTop) + 'px';
     }
 
     positionPhoto();
     window.addEventListener('resize', positionPhoto);
-
-    const nameMark = document.querySelector('.name-mark');
-    avatar.addEventListener('mouseenter', () => heroPhoto.classList.add('visible'));
-    avatar.addEventListener('mouseleave', () => heroPhoto.classList.remove('visible'));
-    nameMark.addEventListener('mouseenter', () => heroPhoto.classList.add('visible'));
-    nameMark.addEventListener('mouseleave', () => heroPhoto.classList.remove('visible'));
   })();
 
   // Scrolled nav state
@@ -2205,14 +2191,6 @@
     });
     document.addEventListener('click', () => navMenu.classList.remove('open'));
   }
-
-  // Photo overlay
-  const photoOverlay = document.getElementById('photoOverlay');
-  document.querySelector('.nav-avatar-thumb').addEventListener('click', () => {
-    if (window.innerWidth <= 768) photoOverlay.classList.add('open');
-  });
-  document.getElementById('photoOverlayClose').addEventListener('click', () => photoOverlay.classList.remove('open'));
-  document.querySelector('.photo-overlay-backdrop').addEventListener('click', () => photoOverlay.classList.remove('open'));
 
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', () => {
