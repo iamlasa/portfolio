@@ -257,13 +257,14 @@
     max-width: 1400px;
     margin: 0 auto;
     border-bottom: 1px solid var(--line);
-    /* Fill the viewport below the sticky nav (16+56+16 = 88px) and
-       vertically center the content so the hero reads as a clean
-       above-the-fold view. */
+    /* Fill the viewport below the sticky nav (16+56+16 = 88px). Content
+       stays anchored near the top (comfortable nav-to-pill spacing) while
+       the stats row is pinned to the bottom — so the hero fills the fold
+       with no dead gap at the top or bottom. */
     min-height: calc(100vh - 88px);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .hero-photo {
@@ -294,12 +295,17 @@
   .hero-inner {
     position: relative;
     z-index: 2;
-    display: grid;
-    grid-template-columns: 1fr;
-    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
   }
 
-  .hero-left { animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
 
   .eyebrow {
     display: inline-flex;
@@ -329,6 +335,8 @@
   .hero-eyebrow {
     display: inline-flex;
     align-items: center;
+    /* Don't stretch to full width now that .hero-left is a flex column. */
+    align-self: flex-start;
     gap: 8px;
     font-size: 11px;
     letter-spacing: 0.12em;
@@ -459,6 +467,8 @@
     display: flex;
     justify-content: space-between;
     padding-top: 32px;
+    /* Pin the stats row to the bottom of the hero so it sits at the fold. */
+    margin-top: auto;
   }
 
   .proof-item { display: flex; flex-direction: column; gap: 6px; }
