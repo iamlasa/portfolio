@@ -257,11 +257,11 @@
     max-width: 1400px;
     margin: 0 auto;
     border-bottom: 1px solid var(--line);
-    /* Fill the viewport below the sticky nav (16+56+16 = 88px). Content
-       stays anchored near the top (comfortable nav-to-pill spacing) while
-       the stats row is pinned to the bottom — so the hero fills the fold
-       with no dead gap at the top or bottom. */
-    min-height: calc(100vh - 88px);
+    /* Size the hero to its content rather than forcing it to fill the fold.
+       Filling the fold pushed the bottom-pinned stats away from the CTAs,
+       opening a large gap on tall/external monitors. A modest min-height
+       keeps a comfortable hero on short content without stretching. */
+    min-height: 480px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -462,8 +462,9 @@
   .proof {
     display: flex;
     padding-top: 28px;
-    /* Pin the stats row to the bottom of the hero so it sits at the fold. */
-    margin-top: auto;
+    /* Sit a fixed, comfortable distance below the CTAs so the gap is
+       consistent across screen sizes (no longer pinned to the fold). */
+    margin-top: 56px;
     /* Subtle top line across the stats band. */
     border-top: 1px solid var(--line);
   }
@@ -1374,7 +1375,7 @@
     h1 { font-size: 40px; line-height: 48px; margin-bottom: 20px; }
     .description-block { margin-bottom: 32px; gap: 12px; }
     .description-line { font-size: 15px; }
-    .proof { flex-direction: column; gap: 0; padding-top: 40px; }
+    .proof { flex-direction: column; gap: 0; padding-top: 40px; margin-top: 0; }
     .proof-item { width: 100%; padding: 28px 0; border-bottom: 1px solid var(--line); }
     .proof-item + .proof-item { border-left: none; padding-left: 0; }
     .proof-item:last-child { border-bottom: none; }
